@@ -1,7 +1,7 @@
 # Teamit
 
 <img src="https://github.com/kevinbrennanio/misc/teamitLogo.png" width="100">
-![alt text](https://github.com/kevinbrennanio/teamitt/blob/main/misc/teamitLogo.png?raw=true)
+![alt text](https://github.com/kevinbrennanio/teamitt/blob/main/misc/teamitLogo.png)
 
 
 
