@@ -6,4 +6,4 @@ Teamit is a browser based productivity application for small teams.
 
 ## To start using Teamit
 
-Sign up for an account to start using Teamit https://teamit.app
+Sign up for an account to start using Teamit <https://teamit.app>

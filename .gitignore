@@ -53,4 +53,7 @@ e2e/*.map
 /vendor/
 /Godeps/
 
+### Firebase ###
+ui/firebase-config.ts
+
 # End of https://www.toptal.com/developers/gitignore/api/go,angular

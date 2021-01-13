@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "teamit-app": {
+      "hosting": {
+        "ui": [
+          "teamit-app"
+        ]
+      }
+    }
+  }
+}

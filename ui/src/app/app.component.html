@@ -1,0 +1,10 @@
+<div>
+    <h1>{{ title }}</h1>
+    <ul>
+        <li *ngFor="let team of teams$ | async">
+            {{ team.name }}
+        </li>
+    </ul>
+</div>
+
+<router-outlet></router-outlet>

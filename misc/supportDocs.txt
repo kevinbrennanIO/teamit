@@ -1,0 +1,3 @@
+Angular Project Structure
+https://stackoverflow.com/questions/40905499/where-to-put-interfaces-and-type-aliases
+
