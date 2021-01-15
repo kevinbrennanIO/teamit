@@ -6,10 +6,9 @@ import { firebaseConfig } from '../../firebase-config';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { environment } from 'src/environments/environment';
 import { ButtonModule } from 'primeng/button';
-
-
+import { AuthModule } from './modules/auth/auth.module';
+import { JournalModule } from './modules/journal/journal.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +19,10 @@ import { ButtonModule } from 'primeng/button';
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
-    ButtonModule
+    ButtonModule,
+    // Teamit Modules
+    AuthModule,
+    JournalModule
   ],
   providers: [],
   bootstrap: [AppComponent]
