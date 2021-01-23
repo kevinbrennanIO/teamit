@@ -1,0 +1,22 @@
+@import "../../../../../styles";
+
+.team-icon {
+    width: 50px;
+    height: 50px;
+    background-color: $gunmetal;
+    border-radius: 0%;
+    text-align: center;
+    padding-top:25%;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1em;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.team-icon:hover {
+  cursor: pointer;
+  background-color: $hover_color;
+}

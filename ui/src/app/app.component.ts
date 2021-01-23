@@ -9,12 +9,12 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent implements OnInit {
 
-  title = 'ui';
-  teams$: Observable<any[]>;
+  // title = 'ui';
+  // teams$: Observable<any[]>;
 
-  constructor(private firestore: AngularFirestore) {}
+  // constructor(private firestore: AngularFirestore) {}
 
   ngOnInit() {
-    this.teams$ = this.firestore.collection('teams').valueChanges();
+    // this.teams$ = this.firestore.collection('teams').valueChanges();
   }
 }
