@@ -9,10 +9,11 @@ import { AppComponent } from './app.component';
 import { ButtonModule } from 'primeng/button';
 import { AuthModule } from './modules/auth/auth.module';
 import { JournalModule } from './modules/journal/journal.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -20,9 +21,11 @@ import { JournalModule } from './modules/journal/journal.module';
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     ButtonModule,
+
     // Teamit Modules
     AuthModule,
-    JournalModule
+    JournalModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

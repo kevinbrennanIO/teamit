@@ -1,0 +1,111 @@
+@import "../../../../../styles";
+
+.header-row {
+  @include header-main;
+}
+
+.logo-small {
+  @include logo-small;
+  margin-left: 20px;
+  padding-top: 5px;
+}
+
+.gradient {
+  height: 5px;
+  background: linear-gradient(90deg, $sea-green-crayola 0%, $tufts-blue 100%);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.flex-header {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-header div:last-child {
+  margin: auto 20px auto auto;
+}
+
+.main-row {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.team-nav {
+  background: linear-gradient(0deg, $tufts-blue 0%, $sea-green-crayola 100%);
+  border-right: 1px solid rgb(38, 39, 56);
+  min-width: 80px;
+  color: white;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  //border-top-left-radius: 20px;
+  //border-bottom-right-radius: 20px;
+}
+
+.team-nav div:last-child {
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+.teammate-nav {
+  background-color: $gunmetal;
+  min-width: 250px;
+  color: white;
+  padding: 0px;
+  overflow: auto;
+  scrollbar-width: none;
+  overflow-wrap: normal;
+  word-wrap: break-word;
+  height: 100%;
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.teammate-nav::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.example {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.teamname {
+  margin: 0;
+  background-color: #19242b;
+  font-size: 1.2em;
+  font-weight: 800;
+  padding: 10px;
+  border-bottom: 1px solid rgb(35, 36, 48);
+  display: block;
+  position: absolute;
+  width: 250px;
+}
+
+.journal-main {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  padding: 10px;
+  background-color:rgb(242, 242, 242);
+  overflow: auto;
+  scrollbar-width: none;
+  overflow-wrap: normal;
+  word-wrap: break-word;
+  height: 100%;
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+
+.settings-icon {
+  cursor: pointer;
+  background-color: red;
+}

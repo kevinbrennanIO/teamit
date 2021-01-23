@@ -1,0 +1,18 @@
+@import "../../../../../styles";
+
+.team-member {
+    background-color: $gunmetal;
+    padding: 12px 10px 12px 25px;
+  font-size: 1em;
+  color: #bcbcbc;
+}
+
+.team-member:hover {
+    background-color: $hover_color;
+    cursor: pointer;
+  color: white;
+}
+
+.top-spacer {
+  height: 45px;
+}
