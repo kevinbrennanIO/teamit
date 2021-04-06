@@ -8,6 +8,8 @@ import { TeamListComponent } from './components/team-list/team-list.component';
 import { TeammemberListComponent } from './components/teammember-list/teammember-list.component';
 import { PreferencesComponent } from './components/preferences/preferences.component';
 import { SearchComponent } from './components/search/search.component';
+import {SharedModule} from '../../shared/shared.module';
+
 
 
 @NgModule({
@@ -15,6 +17,7 @@ import { SearchComponent } from './components/search/search.component';
   imports: [
     CommonModule,
     JournalRoutingModule,
+    SharedModule,
     ButtonModule
   ],
   exports: [

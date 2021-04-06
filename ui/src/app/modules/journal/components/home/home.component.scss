@@ -15,7 +15,7 @@
   background: linear-gradient(90deg, $sea-green-crayola 0%, $tufts-blue 100%);
 }
 
-.main {
+.main-journal-home {
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -24,10 +24,11 @@
 .flex-header {
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
 }
 
-.flex-header div:last-child {
-  margin: auto 20px auto auto;
+.flex-header div:first-child {
+  margin: auto auto auto 10px;
 }
 
 .main-row {

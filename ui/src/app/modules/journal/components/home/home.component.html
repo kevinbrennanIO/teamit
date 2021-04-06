@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main-journal-home">
     <!-- header -->
     <header class="header-row">
         <div class="gradient"></div>
@@ -7,7 +7,17 @@
                 <img class="logo-small" src="../../../../../assets/teamitLogo.png" alt="teamit-logo">
             </div>
             <div>
-              <p-button label="Search" icon="pi pi-check" iconPos="left" [routerLink]="['../search']" routerLinkActive="router-link-active"></p-button>
+                <app-logout></app-logout>
+            </div>
+            <div>
+                <button [routerLink]="['../search']" routerLinkActive="router-link-active" style="color: white;" pButton
+                    type="button" class="p-button-lg p-button-text" icon="pi pi-search" iconPos="middle">
+                </button>
+            </div>
+            <div>
+                <button [routerLink]="['../preferences']" routerLinkActive="router-link-active" style="color: white;"
+                    pButton type="button" class="p-button-lg p-button-text" icon="pi pi-cog" iconPos="middle">
+                </button>
             </div>
         </div>
     </header>
@@ -16,71 +26,48 @@
         <!-- team nav -->
         <div class="team-nav">
             <app-team-list></app-team-list>
-        <div>
-            <button
-                [routerLink]="['../preferences']"
-                routerLinkActive="router-link-active"
-                style="color: white;"
-                pButton type="button"
-                class="p-button-lg p-button-text"
-                icon="pi pi-cog"
-                iconPos="middle">
-            </button>
-            </div>
         </div>
         <!-- teammate nav -->
         <div class="teammate-nav">
-            <div class="teamname"><i class="pi pi-users" style="padding-right: 8px; font-size: 1em"></i>National College</div>
+            <div class="teamname"><i class="pi pi-users" style="padding-right: 8px; font-size: 1em"></i>National College
+            </div>
             <app-teammember-list></app-teammember-list>
         </div>
         <!-- content section -->
         <div class="journal-main">
             <h2>Monday 21st January</h2>
 
-            <div style=" margin: 20px; width: 60%; float: left; background-color: white; padding: 30px; -webkit-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
+
+            <div style=" margin: 10px; width: 60%; float: left; background-color: white; padding: 30px; -webkit-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
             -moz-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
-            box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);"><h3>Kevin Brennan</h3><p>message from kevin brennan. with some more text just to fill the box up a bit</p></div>
+            box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);">
+                <h3>SSH connectivity issues</h3>
+                <p>I am having some issues connecting to our staging jumpbox... can anyone help? Here is the error</p>
+                <div style="background-color: beige; margin: 10px; padding: 15px;">
+                    <pre>ssh: connect to host 203.0.113.0 port 22: Connection timed out</pre>
+                </div>
+                <p></p>
+                <button pButton type="button" label="Comment" class="p-button-outlined"></button>
+                <!-- <div *ngFor="let comment of comments">
+                    <div style="background-color: beige; margin: 10px;"><pre>{{comment | json}}</pre></div>
+                </div> -->
+            </div>
 
-<div style=" margin: 20px; width: 60%; float: right; background-color: white; padding: 30px; -webkit-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
--moz-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);"><h3>Kevin Brennan</h3><p>message from kevin brennan. with some more text just to fill the box up a bit</p></div>
-            <div style=" margin: 20px; width: 60%; float: left; background-color: white; padding: 30px; -webkit-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
+            <div style=" margin: 10px; width: 60%; float: right; background-color: white; padding: 30px; -webkit-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
             -moz-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
-            box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);"><h3>Kevin Brennan</h3><p>message from kevin brennan. with some more text just to fill the box up a bit</p></div>
-
-<div style=" margin: 20px; width: 60%; float: right; background-color: white; padding: 30px; -webkit-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
--moz-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);"><h3>Kevin Brennan</h3><p>message from kevin brennan. with some more text just to fill the box up a bit</p></div>
-            <div style=" margin: 20px; width: 60%; float: left; background-color: white; padding: 30px; -webkit-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
-            -moz-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
-            box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);"><h3>Kevin Brennan</h3><p>message from kevin brennan. with some more text just to fill the box up a bit</p></div>
-
-<div style=" margin: 20px; width: 60%; float: right; background-color: white; padding: 30px; -webkit-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
--moz-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);"><h3>Kevin Brennan</h3><p>message from kevin brennan. with some more text just to fill the box up a bit</p></div>
-            <div style=" margin: 20px; width: 60%; float: left; background-color: white; padding: 30px; -webkit-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
-            -moz-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
-            box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);"><h3>Kevin Brennan</h3><p>message from kevin brennan. with some more text just to fill the box up a bit</p></div>
-
-<div style=" margin: 20px; width: 60%; float: right; background-color: white; padding: 30px; -webkit-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
--moz-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);"><h3>Kevin Brennan</h3><p>message from kevin brennan. with some more text just to fill the box up a bit</p></div>
-            <div style=" margin: 20px; width: 60%; float: left; background-color: white; padding: 30px; -webkit-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
-            -moz-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
-            box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);"><h3>Kevin Brennan</h3><p>message from kevin brennan. with some more text just to fill the box up a bit</p></div>
-
-<div style=" margin: 20px; width: 60%; float: right; background-color: white; padding: 30px; -webkit-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
--moz-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);"><h3>Kevin Brennan</h3><p>message from kevin brennan. with some more text just to fill the box up a bit</p></div>
-            <div style=" margin: 20px; width: 60%; float: left; background-color: white; padding: 30px; -webkit-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
-            -moz-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
-            box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);"><h3>Kevin Brennan</h3><p>message from kevin brennan. with some more text just to fill the box up a bit</p></div>
-
-<div style=" margin: 20px; width: 60%; float: right; background-color: white; padding: 30px; -webkit-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
--moz-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);"><h3>Kevin Brennan</h3><p>message from kevin brennan. with some more text just to fill the box up a bit</p></div>
-
-
+            box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);">
+                <!-- <h3>SSH connectivity issues</h3> -->
+                <p>Let me see if I can help... Have you tried the following?</p>
+                <p><a href="https://www.digitalocean.com/docs/droplets/resources/troubleshooting-ssh/connectivity/">https://www.digitalocean.com/docs/droplets/resources/troubleshooting-ssh/connectivity/</a></p>
+                <!-- <div style="background-color: beige; margin: 10px; padding: 15px;">
+                    <pre>ssh: connect to host 203.0.113.0 port 22: Connection timed out</pre>
+                </div> -->
+                <p></p>
+                <button pButton type="button" label="Comment" class="p-button-outlined"></button>
+                <!-- <div *ngFor="let comment of comments">
+                    <div style="background-color: beige; margin: 10px;"><pre>{{comment | json}}</pre></div>
+                </div> -->
+            </div>
         </div>
     </div>
 </div>

@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import {Component, OnInit} from '@angular/core';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +8,9 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent implements OnInit {
 
-  // title = 'ui';
-  // teams$: Observable<any[]>;
-
-  // constructor(private firestore: AngularFirestore) {}
+  constructor(private primengConfig: PrimeNGConfig) {}
 
   ngOnInit() {
-    // this.teams$ = this.firestore.collection('teams').valueChanges();
+    this.primengConfig.ripple = true;
   }
 }
