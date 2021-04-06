@@ -8,7 +8,6 @@ import "errors"
 import "os"
 
 const (
-	OktaDomain     = "https://dev-73032749.okta.com"
 	RequestTimeout = 30
 	MaxRetries     = 3
 )
