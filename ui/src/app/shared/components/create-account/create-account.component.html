@@ -1,0 +1,49 @@
+<div class="landing-page-main">
+  <div class="main-card">
+    <img class="logo-medium" src="../../../../../assets/teamitLogo_white.png" alt="teamit-logo">
+    <hr style="width: 400px; margin-top: 30px;">
+    <br>
+    <section>
+    <h2><strong>Create account</strong></h2>
+
+      <div class="create-vaidation-failed" *ngIf="validationFailed">Email or password are invalid</div>
+
+    <div class="p-field p-grid">
+      <div class="p-col">
+        <input
+          id="email"
+          style="width: 100%;"
+          placeholder="Email"
+          type="email"
+          [(ngModel)]="userEmail"
+          pInputText
+        >
+      </div>
+    </div>
+    <div class="p-field p-grid">
+      <div class="p-col">
+        <input
+          pPassword
+          id="password"
+          style="width: 100%;"
+          placeholder="Password"
+          type="password"
+          [(ngModel)]="userPassword"
+          pInputText
+        >
+      </div>
+    </div>
+    </section>
+
+    <button
+      pButton
+      type="button"
+      label="Create account"
+      style="width:100%"
+      (click)="createAccount()">
+    </button>
+    <p></p>
+    <p>Have an account? <a [routerLink]="['/login']" routerLinkActive="true">Login</a></p>
+    <a [routerLink]="['/login']" routerLinkActive="true">Reset password</a>
+  </div>
+</div>
