@@ -1,14 +1,14 @@
-package main
+package logger
 
 import (
 	log "github.com/sirupsen/logrus"
 	"os"
 )
 
-// createLogger returns an instance of a logger.
+// CreateLogger returns an instance of a logger.
 // This saves importing and configuring the log
 // package multiple time throughout the project
-func createLogger() *log.Logger {
+func CreateLogger() *log.Logger {
 
 	// logger := &log.Logger{
 	//     Out:   os.Stderr,

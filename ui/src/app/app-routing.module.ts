@@ -22,7 +22,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'logout',
-    component: LogoutComponent
+    component: LogoutComponent,
   },
   {
     path: 'login/callback',

@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	logger2 "github.com/kevinbrennanio/teamit/modules/logger"
 	"github.com/okta/okta-sdk-golang/v2/okta"
 	"strings"
 )
@@ -17,7 +18,7 @@ type User struct {
 }
 
 // configure logging
-var logger = createLogger()
+var logger = logger2.createLogger()
 
 // validateParams validates a user request
 func (ur *User) validateParams() error {

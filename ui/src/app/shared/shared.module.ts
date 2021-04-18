@@ -10,6 +10,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import {FormsModule} from '@angular/forms';
 import {PasswordModule} from 'primeng/password';
 import {RouterModule} from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,14 +26,16 @@ import {RouterModule} from '@angular/router';
     InputTextModule,
     FormsModule,
     PasswordModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
   exports: [
     ErrorComponent,
     ProfileComponent,
     LoginComponent,
     LogoutComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    ReactiveFormsModule,
   ]
 })
 export class SharedModule { }
