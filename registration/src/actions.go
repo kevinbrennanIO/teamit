@@ -11,15 +11,14 @@ import (
 
 func checkUserExist(ctx context.Context, oktaClient *okta.Client, res http.ResponseWriter, req *http.Request) error {
 
-	// read the request body
-	decoder := json.NewDecoder(req.Body)
+	// TODO: Change this for query parameters
 	validateRequest := &User{}
-	err := decoder.Decode(validateRequest)
-	if err != nil {
-		logger.Errorf("decoding payload error: %v", err)
-		res.WriteHeader(http.StatusInternalServerError)
-		return err
-	}
+	userFromHeader := req.Header.Get("username-from-header")
+
+	validateRequest.FirstName = "abc"
+	validateRequest.LastName = "def"
+	validateRequest.Email = userFromHeader
+	validateRequest.Password = "pass"
 
 	// validate user request
 	if err := validateRequest.validateParams(); err != nil {
@@ -30,7 +29,7 @@ func checkUserExist(ctx context.Context, oktaClient *okta.Client, res http.Respo
 	}
 
 	// check if user already exists
-	err, _ = validateRequest.checkUserExists(ctx, oktaClient)
+	err, _ := validateRequest.checkUserExists(ctx, oktaClient)
 	if err != nil {
 		logger.Errorf("Error while fetching user from Okta: %v", err)
 		res.WriteHeader(http.StatusConflict)
@@ -39,7 +38,7 @@ func checkUserExist(ctx context.Context, oktaClient *okta.Client, res http.Respo
 	}
 
 	res.WriteHeader(http.StatusOK)
-	fmt.Fprint(res, errors.New(fmt.Sprintf("%v is available for selection.", validateRequest.Email)))
+	fmt.Fprint(res, fmt.Sprintf("%v is available for selection.", validateRequest.Email))
 	return nil
 }
 

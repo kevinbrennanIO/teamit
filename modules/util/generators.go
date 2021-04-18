@@ -1,4 +1,4 @@
-package main
+package util
 
 import (
 	"math/rand"
@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func generatePassword(length int) string {
+func GeneratePassword(length int) string {
 	const charSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_!%"
 
 	rand.Seed(time.Now().Unix())

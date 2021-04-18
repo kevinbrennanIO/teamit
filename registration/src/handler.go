@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	logger2 "github.com/kevinbrennanio/teamit/modules/logger"
 	"net/http"
 )
 
@@ -10,8 +11,11 @@ import (
 // depending on the specified HTTP verb ( GET, POST, PUT, DELETE)
 func requestHandler(res http.ResponseWriter, req *http.Request) {
 
+	// Configure CORS setting
+	ConfigureCors(&res)
+
 	// configure logging
-	logger := createLogger()
+	logger := logger2.createLogger()
 	ctx := context.Background()
 
 	// instantiate Okta Client
@@ -30,6 +34,8 @@ func requestHandler(res http.ResponseWriter, req *http.Request) {
 		updateUser(ctx, oktaClient, res, req)
 	case "DELETE":
 		removeUser(ctx, oktaClient, res, req)
+	case "OPTIONS":
+		return
 	default:
 		res.WriteHeader(http.StatusNotFound)
 		fmt.Fprint(res, "Unknown API endpoint")

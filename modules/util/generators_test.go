@@ -1,10 +1,10 @@
-package main
+package util
 
 import "testing"
 
 func TestGeneratePassword(t *testing.T) {
 
-	got := generatePassword(20)
+	got := GeneratePassword(20)
 	want := len(got)
 
 	if len(got) != want {

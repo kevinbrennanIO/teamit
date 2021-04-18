@@ -12,6 +12,7 @@ import {SharedModule} from './shared/shared.module';
 
 import {OKTA_CONFIG, OktaAuthModule} from '@okta/okta-angular';
 import {oktaConfig} from '../../src/app/configs/okta-config';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import {oktaConfig} from '../../src/app/configs/okta-config';
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     OktaAuthModule,
+    HttpClientModule,
     // Teamit Modules
     AuthModule,
     JournalModule,
