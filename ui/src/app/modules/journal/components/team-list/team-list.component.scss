@@ -20,3 +20,10 @@
   cursor: pointer;
   background-color: $hover_color;
 }
+
+.two-chars{
+  width: 2ch;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: auto;
+}

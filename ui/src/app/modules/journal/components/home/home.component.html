@@ -1,73 +1,69 @@
 <div class="main-journal-home">
-    <!-- header -->
-    <header class="header-row">
-        <div class="gradient"></div>
-        <div class="flex-header">
-            <div>
-                <img class="logo-small" src="../../../../../assets/teamitLogo.png" alt="teamit-logo">
-            </div>
-            <div>
-                <app-logout></app-logout>
-            </div>
-            <div>
-                <button [routerLink]="['../search']" routerLinkActive="router-link-active" style="color: white;" pButton
-                    type="button" class="p-button-lg p-button-text" icon="pi pi-search" iconPos="middle">
-                </button>
-            </div>
-            <div>
-                <button [routerLink]="['../preferences']" routerLinkActive="router-link-active" style="color: white;"
-                    pButton type="button" class="p-button-lg p-button-text" icon="pi pi-cog" iconPos="middle">
-                </button>
-            </div>
-        </div>
-    </header>
-    <!-- main -->
-    <div class="main-row">
-        <!-- team nav -->
-        <div class="team-nav">
-            <app-team-list></app-team-list>
-        </div>
-        <!-- teammate nav -->
-        <div class="teammate-nav">
-            <div class="teamname"><i class="pi pi-users" style="padding-right: 8px; font-size: 1em"></i>National College
-            </div>
-            <app-teammember-list></app-teammember-list>
-        </div>
-        <!-- content section -->
-        <div class="journal-main">
-            <h2>Monday 21st January</h2>
-
-
-            <div style=" margin: 10px; width: 60%; float: left; background-color: white; padding: 30px; -webkit-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
-            -moz-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
-            box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);">
-                <h3>SSH connectivity issues</h3>
-                <p>I am having some issues connecting to our staging jumpbox... can anyone help? Here is the error</p>
-                <div style="background-color: beige; margin: 10px; padding: 15px;">
-                    <pre>ssh: connect to host 203.0.113.0 port 22: Connection timed out</pre>
-                </div>
-                <p></p>
-                <button pButton type="button" label="Comment" class="p-button-outlined"></button>
-                <!-- <div *ngFor="let comment of comments">
-                    <div style="background-color: beige; margin: 10px;"><pre>{{comment | json}}</pre></div>
-                </div> -->
-            </div>
-
-            <div style=" margin: 10px; width: 60%; float: right; background-color: white; padding: 30px; -webkit-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
-            -moz-box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);
-            box-shadow: 9px 10px 5px -6px rgba(0,0,0,0.16);">
-                <!-- <h3>SSH connectivity issues</h3> -->
-                <p>Let me see if I can help... Have you tried the following?</p>
-                <p><a href="https://www.digitalocean.com/docs/droplets/resources/troubleshooting-ssh/connectivity/">https://www.digitalocean.com/docs/droplets/resources/troubleshooting-ssh/connectivity/</a></p>
-                <!-- <div style="background-color: beige; margin: 10px; padding: 15px;">
-                    <pre>ssh: connect to host 203.0.113.0 port 22: Connection timed out</pre>
-                </div> -->
-                <p></p>
-                <button pButton type="button" label="Comment" class="p-button-outlined"></button>
-                <!-- <div *ngFor="let comment of comments">
-                    <div style="background-color: beige; margin: 10px;"><pre>{{comment | json}}</pre></div>
-                </div> -->
-            </div>
-        </div>
+  <!-- header -->
+  <header class="header-row">
+    <div class="gradient"></div>
+    <div class="flex-header">
+      <div>
+        <img class="logo-small" src="../../../../../assets/teamitLogo.png" alt="teamit-logo">
+      </div>
+      <span class="nav-menu-items">
+        <button pTooltip="Search"
+                [routerLink]="['../search']"
+                routerLinkActive="router-link-active"
+                style="color: white;"
+                pButton
+                type="button"
+                class="p-button-lg p-button-text"
+                icon="pi pi-search"
+                iconPos="middle"
+                tooltipPosition="left">
+        </button>
+      </span>
+      <span class="nav-menu-items">
+        <button pTooltip="Admin Dashboard"
+                [routerLink]="['../admin']"
+                routerLinkActive="router-link-active"
+                style="color: white;"
+                pButton
+                type="button"
+                class="p-button-lg p-button-text"
+                icon="pi pi-chart-bar"
+                iconPos="middle"
+                tooltipPosition="left">
+        </button>
+      </span>
+      <span class="nav-menu-items">
+        <button pTooltip="Preferences"
+                [routerLink]="['../preferences']"
+                routerLinkActive="router-link-active"
+                style="color: white;"
+                pButton
+                type="button"
+                class="p-button-lg p-button-text"
+                icon="pi pi-cog"
+                iconPos="middle"
+                tooltipPosition="left">
+        </button>
+      </span>
+      <span class="nav-menu-items">
+        <app-logout></app-logout>
+      </span>
     </div>
+  </header>
+  <!-- main -->
+  <div class="main-row">
+    <!-- team nav -->
+    <div class="team-nav">
+      <app-team-list></app-team-list>
+    </div>
+    <!-- teammate nav -->
+    <div class="teammate-nav">
+      <app-teammember-list></app-teammember-list>
+    </div>
+    <!-- content section -->
+    <div class="journal-main">
+      <app-wall></app-wall>
+      <app-compose></app-compose>
+    </div>
+  </div>
 </div>

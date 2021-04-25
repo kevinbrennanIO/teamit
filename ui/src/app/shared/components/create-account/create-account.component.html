@@ -1,4 +1,5 @@
 <div class="landing-page-main">
+  <p-toast position="top-right"></p-toast>
   <div class="main-card">
     <img class="logo-medium" src="../../../../../assets/teamitLogo_white.png" alt="teamit-logo">
     <hr style="width: 400px; margin-top: 30px;">
@@ -9,7 +10,7 @@
         <!-- first name -->
         <div class="p-field p-grid">
           <div class="p-col">
-            <input pInputText formControlName="firstname" placeholder="First name">
+            <input class="width-80" pInputText formControlName="firstname" placeholder="First name">
             <div
               *ngIf="registrationForm.get('firstname').invalid && (registrationForm.get('firstname').dirty || registrationForm.get('firstname').touched)">
             </div>
@@ -18,7 +19,7 @@
         <!-- last name -->
         <div class="p-field p-grid">
           <div class="p-col">
-          <input pInputText formControlName="lastname" placeholder="Last name">
+          <input class="width-80" pInputText formControlName="lastname" placeholder="Last name">
           <div
             *ngIf="registrationForm.get('lastname').invalid && (registrationForm.get('lastname').dirty || registrationForm.get('lastname').touched)">
           </div>
@@ -27,22 +28,32 @@
         <!-- email address -->
         <div class="p-field p-grid">
           <div class="p-col">
-          <input pInputText formControlName="email" placeholder="Email">
+          <input class="width-80" pInputText formControlName="email" placeholder="Email">
           <div
             *ngIf="registrationForm.get('email').invalid && (registrationForm.get('email').dirty || registrationForm.get('email').touched)">
           </div>
         </div>
         </div>
+        <!-- team name -->
+        <div class="p-field p-grid">
+          <div class="p-col">
+            <input class="width-80" pInputText formControlName="teamname" placeholder="Team Name">
+            <div
+              *ngIf="registrationForm.get('teamname').invalid && (registrationForm.get('teamname').dirty || registrationForm.get('teamname').touched)">
+            </div>
+          </div>
+        </div>
         <!-- password -->
         <div class="p-field p-grid">
           <div class="p-col">
-          <input pPassword formControlName="password" type="password" placeholder="Choose password">
+          <input class="width-80" pPassword formControlName="password" type="password" placeholder="Choose password">
           <div
             *ngIf="registrationForm.get('password').invalid && (registrationForm.get('password').dirty || registrationForm.get('password').touched)">
           </div>
         </div>
         </div>
         <button
+          class="width-80"
           pButton
           type="submit"
           label="Create account"

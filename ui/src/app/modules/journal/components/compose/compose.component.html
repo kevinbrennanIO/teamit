@@ -1,0 +1,31 @@
+<br>
+<section>
+  <p-tabView>
+
+    <p-tabPanel
+      header="Blog"
+      [selected]="true"
+      leftIcon="pi pi-pencil"
+      tooltip="share a thought">
+      <!-- Blog Creation Component -->
+      <app-blog-create></app-blog-create>
+    </p-tabPanel>
+
+    <p-tabPanel
+      header="Query"
+      tooltip="request help"
+      leftIcon="pi pi-question-circle">
+      <!-- Query Creation Component -->
+      <app-query-create></app-query-create>
+    </p-tabPanel>
+
+    <p-tabPanel
+      header="Todo"
+      tooltip="track work-items"
+      leftIcon="pi pi-check">
+      <!-- Todo Creation Template -->
+      <app-todo-create></app-todo-create>
+    </p-tabPanel>
+
+  </p-tabView>
+</section>

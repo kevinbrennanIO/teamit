@@ -1,24 +1,27 @@
 package main
 
 import (
+	"cloud.google.com/go/firestore"
 	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
+	lg "github.com/kevinbrennanio/teamit/modules/logger"
 	"github.com/okta/okta-sdk-golang/v2/okta"
 	"net/http"
 )
 
-func checkUserExist(ctx context.Context, oktaClient *okta.Client, res http.ResponseWriter, req *http.Request) error {
+func checkUserExist(ctx context.Context, oktaClient *okta.Client, res http.ResponseWriter, email string) error {
 
-	// TODO: Change this for query parameters
+	// configure logging
+	logger := lg.CreateLogger()
+
 	validateRequest := &User{}
-	userFromHeader := req.Header.Get("username-from-header")
+	validateRequest.FirstName = "dummy"
+	validateRequest.LastName = "dummy"
+	validateRequest.Email = email
+	validateRequest.Password = "dummy"
 
-	validateRequest.FirstName = "abc"
-	validateRequest.LastName = "def"
-	validateRequest.Email = userFromHeader
-	validateRequest.Password = "pass"
 
 	// validate user request
 	if err := validateRequest.validateParams(); err != nil {
@@ -40,6 +43,21 @@ func checkUserExist(ctx context.Context, oktaClient *okta.Client, res http.Respo
 	res.WriteHeader(http.StatusOK)
 	fmt.Fprint(res, fmt.Sprintf("%v is available for selection.", validateRequest.Email))
 	return nil
+}
+
+// checkTeamExists calls firestore to determine if the specified
+// team already exists within the system.
+func checkTeamExists(ctx context.Context, fsc *firestore.Client, res http.ResponseWriter, req *http.Request) {
+	teamName := req.URL.Query()["team"][0]
+	teams := fsc.Collection("teams")
+	q := teams.Where("name", "==", teamName)
+	iter := q.Documents(ctx)
+	result, _ := iter.GetAll()
+	if len(result) == 0 {
+		res.WriteHeader(http.StatusOK)
+	} else {
+		res.WriteHeader(http.StatusConflict)
+	}
 }
 
 func createUser(ctx context.Context, oktaClient *okta.Client, res http.ResponseWriter, req *http.Request) error {

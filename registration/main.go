@@ -6,7 +6,6 @@ import (
 	"net/http"
 )
 
-// api version
 const Version = "v1"
 const Port = ":2410"
 
