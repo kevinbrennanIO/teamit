@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireModule} from '@angular/fire';
 import {firebaseConfig} from './configs/firebase-config';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -20,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
     // OktaCallbackComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),

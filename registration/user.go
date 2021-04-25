@@ -4,12 +4,12 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	logger2 "github.com/kevinbrennanio/teamit/modules/logger"
+	lg "github.com/kevinbrennanio/teamit/modules/logger"
 	"github.com/okta/okta-sdk-golang/v2/okta"
 	"strings"
 )
 
-// UserRequest struct defines a user request
+// User struct defines a user request
 type User struct {
 	FirstName string `json:"firstname"`
 	LastName  string `json:"lastname"`
@@ -18,7 +18,7 @@ type User struct {
 }
 
 // configure logging
-var logger = logger2.createLogger()
+var logger = lg.CreateLogger()
 
 // validateParams validates a user request
 func (ur *User) validateParams() error {

@@ -1,0 +1,51 @@
+<section>
+  <div *ngIf="posts.length > 0 || welcomeClosed == true; else noPosts" class="p-d-flex p-flex-column">
+    <p-divider align="center" type="dashed">
+      <pre>24/04/2021</pre>
+    </p-divider>
+    <div *ngFor="let post of posts" class="p-d-flex">
+      <div class="p-mr-2" style="color: #676767">
+        <p><strong>Posted:</strong> 11:43am</p>
+        <p><strong>Type:</strong> query</p>
+        <p><strong>Status:</strong> resolved</p>
+        <p><strong>Helpful:</strong></p>
+        <div class="p-d-flex">
+          <i style="padding: 0px 10px 0px 10px;" class="pi pi-thumbs-up"></i><span>0</span>
+          <i style="padding: 0px 10px 0px 10px;" class="pi pi-thumbs-down"></i><span>0</span>
+        </div>
+      </div>
+      <div class="p-mr-2"
+           style="background-color: white; border: 1px solid #d9d9d9; margin-bottom: 20px; width: 100%; padding: 10px 40px 10px 40px; border-left-width: 10px;">
+        <h3>SSH Connectivity Issues</h3>
+        <p-divider></p-divider>
+        <p>{{ post }}</p>
+        <p-divider align="left">
+          <br>
+          <p-button label="Comments" icon="pi pi-comments" styleClass="p-button-outlined"></p-button>
+        </p-divider>
+        <ol>
+          <li>comment one</li>
+          <li>comment two</li>
+          <li>comment three</li>
+        </ol>
+        <h4>Response</h4>
+        <input type="text">
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #noPosts>
+  <div class="no-posts">
+    <a class="top-corner" (click)="closeWelcome()">x</a>
+    <strong>{{ welcomeMessageTeam }}</strong>
+    <p-divider></p-divider>
+    {{ welcomeMessage }}
+    <br>
+    <p>Looking to collaborate? Invite team members.</p>
+    <p-divider></p-divider>
+    <p-button
+      label="Invite others" icon="pi pi-users">
+    </p-button>
+  </div>
+</ng-template>

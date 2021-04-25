@@ -2,10 +2,10 @@ package main
 
 import (
 	"context"
+	"errors"
+	"github.com/okta/okta-sdk-golang/v2/okta"
+	"os"
 )
-import "github.com/okta/okta-sdk-golang/v2/okta"
-import "errors"
-import "os"
 
 const (
 	RequestTimeout = 30

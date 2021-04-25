@@ -25,6 +25,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  margin-right: 20px;
 }
 
 .flex-header div:first-child {
@@ -94,9 +95,8 @@
 
 .journal-main {
   margin: 0;
-  padding: 0;
   width: 100%;
-  padding: 10px;
+  padding: 10px 40px 10px 40px;
   background-color:rgb(242, 242, 242);
   overflow: auto;
   scrollbar-width: none;
@@ -106,7 +106,22 @@
   -ms-overflow-style: none;  /* IE and Edge */
 }
 
+.journal-main > h2 {
+  margin-top: 0;
+}
+
 .settings-icon {
   cursor: pointer;
   background-color: red;
 }
+
+.nav-menu-items {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.nav-menu-items:hover {
+  background: linear-gradient(0deg, $tufts-blue 0%, $sea-green-crayola 100%);
+  border-radius: 50%;
+}
+

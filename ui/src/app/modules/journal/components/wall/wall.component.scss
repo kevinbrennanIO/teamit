@@ -1,0 +1,26 @@
+@import "../../../../../styles";
+
+.no-posts {
+  padding: 40px;
+  text-align: center;
+  background-color: white;
+  border: 1px solid #d9d9d9
+}
+
+.p-button {
+  background-color: $sea-green-crayola;
+  color: $gunmetal;
+}
+
+.top-corner{
+  position: fixed;
+  top: 100px;
+  right: 60px;
+  padding: 10px 15px 10px 15px;
+}
+
+.top-corner:hover {
+  cursor: pointer;
+  background-color: $raspberry;
+  color: white;
+}

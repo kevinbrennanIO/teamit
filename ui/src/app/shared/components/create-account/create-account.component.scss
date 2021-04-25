@@ -1,4 +1,4 @@
-@import "../ui/src/styles";
+@import "../../../../styles.scss";
 
 html {
   margin: 0;
@@ -21,9 +21,9 @@ html {
 
 .main-card {
   background-color: white;
-  padding: 25px;
+  padding: 10px;
   width: 450px;
-  height: 600px;
+  height: 650px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -51,4 +51,8 @@ hr {
   border-radius: 2px;
   background-color: #e36b6b;
   color: white;
+}
+
+.width-80 {
+  width: 80%;
 }

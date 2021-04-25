@@ -11,6 +11,8 @@ import {FormsModule} from '@angular/forms';
 import {PasswordModule} from 'primeng/password';
 import {RouterModule} from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import {ToastModule} from 'primeng/toast';
+import {TooltipModule} from 'primeng/tooltip';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProfileComponent,
     LoginComponent,
     LogoutComponent,
-    CreateAccountComponent,
+    CreateAccountComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     PasswordModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastModule,
+    TooltipModule
+
   ],
   exports: [
     ErrorComponent,
@@ -36,6 +41,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LogoutComponent,
     CreateAccountComponent,
     ReactiveFormsModule,
+    ToastModule,
+    TooltipModule
   ]
 })
 export class SharedModule { }

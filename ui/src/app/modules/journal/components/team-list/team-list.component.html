@@ -1,5 +1,5 @@
-
-<div class="team-icon">Nc</div>
-<div class="team-icon">Ea</div>
-<div class="team-icon">Lr</div>
-
+<div *ngFor="let team of userTeams" class="team-icon">
+  <div class="two-chars">
+    <a (click)="broadcastSelectedTeam($event)">{{ team }}</a>
+  </div>
+</div>

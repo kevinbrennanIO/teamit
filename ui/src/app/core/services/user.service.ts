@@ -1,8 +1,11 @@
 import {Injectable} from '@angular/core';
-import {AngularFirestore} from '@angular/fire/firestore';
-import {HttpClient} from '@angular/common/http';
+import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {OktaAuthService} from '@okta/okta-angular';
 
 import {IUser} from '../../shared/models/IUser';
+import {Observable} from 'rxjs';
+import {log} from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -10,25 +13,57 @@ import {IUser} from '../../shared/models/IUser';
 export class UserService {
 
   userAPI = 'http://localhost:2410/api/v1/user';
+  usersCollection: AngularFirestoreCollection<IUser>;
+  userEmail;
 
   constructor(
     private db: AngularFirestore,
-    private http: HttpClient
+    private http: HttpClient,
+    public oktaAuth: OktaAuthService
   ) {
   }
 
-  async isUsernameAvailable(req: IUser): Promise<number> {
-    let responseCode = 0;
-    // TODO: change API endpoint from GET to allow payload
-    this.http.get(
-      this.userAPI, {
-        headers: {'username-from-header': req.email},
-        responseType: 'text',
-        observe: 'response'
-      }).toPromise().then(resp => {
-      console.log(resp.status);
+  // check availability prior to creation
+  async isUsernameAvailable(email: string) {
+    let responseCode: number = null;
+    const params = new HttpParams().set('email', email);
+
+    await this.http.get(this.userAPI, {
+      params,
+      responseType: 'text',
+      observe: 'response'
+    }).toPromise().then(resp => {
       responseCode = resp.status;
     }).finally();
     return responseCode;
+  }
+
+  isTeamnameAvailable(team: string) {
+    return 200;
+  }
+
+  createOktaEntity() {
+
+  }
+
+  createFirestoreEntity() {
+
+  }
+
+  // returns a list of teams for a given user
+  async getUserTeams() {
+    let email = '';
+    await this.oktaAuth.getUser().then((u) => {
+      email = u.email;
+    });
+    return this.db.collection('users', ref =>
+      ref.where('email', '==', email)).valueChanges();
+  }
+
+  loggedInUser() {
+    this.oktaAuth.getUser().then((u) => {
+      this.userEmail = u.email;
+    });
+    return this.userEmail;
   }
 }

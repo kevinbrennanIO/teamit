@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {TeamService} from '../../../../core/services/team.service';
+
 
 @Component({
   selector: 'app-teammember-list',
@@ -7,9 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeammemberListComponent implements OnInit {
 
-  constructor() { }
+  loading = false;
+  teamName = 'choose team';
+  selectedTeam: string;
+  selectedTeamMembers = [];
 
-  ngOnInit(): void {
+  constructor(
+    private teamService: TeamService
+  ) {
   }
 
+  ngOnInit(): void {
+    // load the users of a selected team
+    this.teamService.currentlySelectedTeam.subscribe(team => {
+      this.teamService.getTeamMembers(team).subscribe((t: any) => {
+        if (this.selectedTeam !== '') {
+          this.selectedTeamMembers = t[0].members || [];
+          this.teamName = t[0].name;
+        }
+      });
+    });
+  }
+
+  loadSelectedUserJournal($event) {
+    this.loading = true;
+    const selectedUser = $event.target.innerText;
+
+    // do the work
+    this.loading = false;
+  }
 }
