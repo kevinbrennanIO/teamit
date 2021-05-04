@@ -61,7 +61,7 @@
         ></button>
       </form>
     </section>
-    <p>Have an account? <a [routerLink]="['/login']" routerLinkActive="true">Login</a></p>
-    <a [routerLink]="['/login']" routerLinkActive="true">Reset password</a>
+    <p>Have an account? <a class="clickable" (click)="login()">Login</a></p>
+    <a class="clickable" (click)="login()">Reset password</a>
   </div>
 </div>

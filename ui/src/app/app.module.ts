@@ -7,18 +7,17 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {AuthModule} from './modules/auth/auth.module';
+
 import {JournalModule} from './modules/journal/journal.module';
 import {SharedModule} from './shared/shared.module';
 
 import {OKTA_CONFIG, OktaAuthModule} from '@okta/okta-angular';
-import {oktaConfig} from '../../src/app/configs/okta-config';
+import {oktaConfig} from './configs/okta-config';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    // OktaCallbackComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -28,8 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     AngularFirestoreModule,
     OktaAuthModule,
     HttpClientModule,
+
     // Teamit Modules
-    AuthModule,
     JournalModule,
     SharedModule
   ],

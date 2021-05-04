@@ -1,7 +1,6 @@
 <br>
-<section>
+<section class="compose-section p-shadow-8">
   <p-tabView>
-
     <p-tabPanel
       header="Blog"
       [selected]="true"
@@ -20,12 +19,12 @@
     </p-tabPanel>
 
     <p-tabPanel
-      header="Todo"
+      header="Todo (coming soon)"
+      disabled="true"
       tooltip="track work-items"
-      leftIcon="pi pi-check">
+      leftIcon="pi pi-check-square">
       <!-- Todo Creation Template -->
       <app-todo-create></app-todo-create>
     </p-tabPanel>
-
   </p-tabView>
 </section>

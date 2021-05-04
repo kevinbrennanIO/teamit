@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {TeamService} from '../../../../core/services/team.service';
 
 @Component({
   selector: 'app-home',
@@ -7,8 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  selectedTeam;
 
-  ngOnInit(): void {
+  constructor(
+    private teamService: TeamService
+  ) { }
+
+  ngOnInit() {
+    this.teamService.currentlySelectedTeam.subscribe(team => {
+      this.selectedTeam = team;
+    });
   }
 }

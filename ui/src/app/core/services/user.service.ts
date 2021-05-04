@@ -5,7 +5,7 @@ import {OktaAuthService} from '@okta/okta-angular';
 
 import {IUser} from '../../shared/models/IUser';
 import {Observable} from 'rxjs';
-import {log} from 'util';
+
 
 @Injectable({
   providedIn: 'root'
@@ -60,8 +60,8 @@ export class UserService {
       ref.where('email', '==', email)).valueChanges();
   }
 
-  loggedInUser() {
-    this.oktaAuth.getUser().then((u) => {
+  async loggedInUser() {
+    await this.oktaAuth.getUser().then((u) => {
       this.userEmail = u.email;
     });
     return this.userEmail;

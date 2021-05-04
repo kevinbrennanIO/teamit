@@ -1,35 +1,59 @@
 <section>
-  <div *ngIf="posts.length > 0 || welcomeClosed == true; else noPosts" class="p-d-flex p-flex-column">
-    <p-divider align="center" type="dashed">
-      <pre>24/04/2021</pre>
-    </p-divider>
-    <div *ngFor="let post of posts" class="p-d-flex">
-      <div class="p-mr-2" style="color: #676767">
-        <p><strong>Posted:</strong> 11:43am</p>
-        <p><strong>Type:</strong> query</p>
-        <p><strong>Status:</strong> resolved</p>
-        <p><strong>Helpful:</strong></p>
-        <div class="p-d-flex">
-          <i style="padding: 0px 10px 0px 10px;" class="pi pi-thumbs-up"></i><span>0</span>
-          <i style="padding: 0px 10px 0px 10px;" class="pi pi-thumbs-down"></i><span>0</span>
+  <p-toast position="top-right"></p-toast>
+  <app-loading *ngIf="loading"></app-loading>
+  <div *ngIf="posts !== undefined; else noPosts" class="p-d-flex p-flex-column">
+    <div *ngFor="let post of posts | async" class="p-d-flex p-jc-sm-evenly">
+      <div class="p-mr-2 meta">
+        <p><strong>Date: </strong>{{ convertDate(post.createdTime) }}</p>
+        <p><strong>Time: </strong>{{ convertTime(post.createdTime) }}</p>
+        <p><strong>Type: </strong>{{ post.type }}</p>
+        <p><strong>Status: </strong>{{ post.status ? post.status : 'n/a'}}</p>
+        <p><strong>Helpful: </strong></p>
+        <div class="p-d-flex p-jc-sm-start">
+          <i (click)="thumbsUpPost()" style="padding: 0px 10px 0px 10px;"
+             class="pi pi-thumbs-up"></i><span>{{ post.thumbsUp }}</span>
+          <i (click)="thumbsDownPost()" style="padding: 0px 10px 0px 10px;"
+             class="pi pi-thumbs-down"></i><span>{{ post.thumbsDown }}</span>
         </div>
       </div>
-      <div class="p-mr-2"
-           style="background-color: white; border: 1px solid #d9d9d9; margin-bottom: 20px; width: 100%; padding: 10px 40px 10px 40px; border-left-width: 10px;">
-        <h3>SSH Connectivity Issues</h3>
-        <p-divider></p-divider>
-        <p>{{ post }}</p>
-        <p-divider align="left">
-          <br>
-          <p-button label="Comments" icon="pi pi-comments" styleClass="p-button-outlined"></p-button>
-        </p-divider>
-        <ol>
-          <li>comment one</li>
-          <li>comment two</li>
-          <li>comment three</li>
-        </ol>
-        <h4>Response</h4>
-        <input type="text">
+      <div class="p-mr-2 card-renderer">
+        <div *ngIf="post.type === 'query'">
+          <h3>{{ post.title }}</h3>
+          <p class="postIdStyle">id: {{ post.id }}</p>
+          <span *ngFor="let tag of post.tags">
+          <p-chip>{{ tag }}</p-chip><span>&nbsp;</span>
+        </span>
+          <p-divider></p-divider>
+        </div>
+        <div *ngIf="post.type === 'blog'">
+          <h3></h3>
+          <p class="postIdStyle">id: {{ post.id }}</p>
+          <p-divider></p-divider>
+        </div>
+        <div>
+          <quill-view-html [content]="post.body"></quill-view-html>
+        </div><br>
+        <div>
+          <p-sidebar [(visible)]="showComments" styleClass="p-sidebar-md" position="right">
+            <div style="overflow-y: scroll; height:600px">
+              <h3>Comments</h3>
+              <p-divider></p-divider>
+              <p>some</p>
+              <p>random</p>
+              <p>comments</p>
+            </div>
+            <p-divider></p-divider>
+            <app-blog-create></app-blog-create>
+          </p-sidebar>
+        </div>
+      </div>
+      <div class="p-mr-2">
+        <button pButton type="button" icon="pi pi-comments" class="p-button-success spacer" pTooltip="View comments"
+                tooltipPosition="left" (click)="toggleComments()"></button>
+        <button pButton type="button" icon="pi pi-pencil" class="p-button-info spacer" pTooltip="Edit"
+                tooltipPosition="left" (click)="editPost()"></button>
+        <button pButton type="button" icon="pi pi-trash" class="p-button-danger p-button-outlined spacer"
+                pTooltip="Delete" tooltipPosition="left" (click)="deletePost(post.id)"></button>
       </div>
     </div>
   </div>
@@ -37,15 +61,7 @@
 
 <ng-template #noPosts>
   <div class="no-posts">
-    <a class="top-corner" (click)="closeWelcome()">x</a>
-    <strong>{{ welcomeMessageTeam }}</strong>
-    <p-divider></p-divider>
-    {{ welcomeMessage }}
     <br>
-    <p>Looking to collaborate? Invite team members.</p>
-    <p-divider></p-divider>
-    <p-button
-      label="Invite others" icon="pi pi-users">
-    </p-button>
+    <p>No team selected! Choose a team from your list of teams.</p>
   </div>
 </ng-template>

@@ -8,6 +8,10 @@ body {
   font-weight: lighter;
 }
 
+body {
+  height: 100vh;
+}
+
 @mixin logo-small {
   margin: 0;
   padding: 0;
