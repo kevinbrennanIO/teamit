@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewChecked, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ContentService} from '../../../../core/services/content.service';
 import {UserService} from '../../../../core/services/user.service';
 import {TeamService} from '../../../../core/services/team.service';
@@ -12,7 +12,7 @@ import {Observable} from 'rxjs';
   styleUrls: ['./wall.component.scss'],
   providers: [MessageService]
 })
-export class WallComponent implements OnInit {
+export class WallComponent implements OnInit, AfterViewChecked {
 
   posts: Observable<IPost[]> = null;
   loading = true;
@@ -40,6 +40,10 @@ export class WallComponent implements OnInit {
     });
   }
 
+  ngAfterViewChecked() {
+    // this.scrollToBottom();
+  }
+
   toggleComments() {
     if (this.showComments) {
       this.showComments = false;
@@ -59,14 +63,16 @@ export class WallComponent implements OnInit {
   }
 
   deletePost(postID: string) {
-    this.contentService.deletePost(this.selectedTeam, postID);
-    this.messageService.add(
-      {
-        severity: 'error',
-        summary: 'Deleted',
-        detail: `Post with ID: ${postID} has been deleted.`
-      }
-    );
+    if (confirm('Confirm delete')) {
+      this.contentService.deletePost(this.selectedTeam, postID);
+      this.messageService.add(
+        {
+          severity: 'error',
+          summary: 'Deleted',
+          detail: `Post with ID: ${postID} has been deleted.`
+        }
+      );
+    }
   }
 
   thumbsUpPost() {
@@ -86,5 +92,9 @@ export class WallComponent implements OnInit {
 
   convertDate(unixTimeStamp: number) {
     return new Date(unixTimeStamp).toLocaleDateString();
+  }
+
+  scrollToBottom() {
+    document.getElementById('journal-main').scrollTo(0, 10000000000);
   }
 }
