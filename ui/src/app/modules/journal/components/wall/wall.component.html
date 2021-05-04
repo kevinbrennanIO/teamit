@@ -2,6 +2,13 @@
   <p-toast position="top-right"></p-toast>
   <app-loading *ngIf="loading"></app-loading>
   <div *ngIf="posts !== undefined; else noPosts" class="p-d-flex p-flex-column">
+    <button
+      *ngIf="!loading"
+      pButton
+      (click)="scrollToBottom()"
+      label="Latest Messages">
+    </button>
+    <br>
     <div *ngFor="let post of posts | async" class="p-d-flex p-jc-sm-evenly">
       <div class="p-mr-2 meta">
         <p><strong>Date: </strong>{{ convertDate(post.createdTime) }}</p>
