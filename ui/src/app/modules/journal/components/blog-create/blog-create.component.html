@@ -1,27 +1,29 @@
 <section class="section">
-  <form #blogForm="ngForm" (ngSubmit)="onSubmit()">
-    <p-editor
-      [(ngModel)]="blogPost.body"
-      name="body"
-      required="true"
-      [style]="{'max-height': '300px', 'overflow': 'scroll'}">
-    </p-editor>
-    <br>
-    <div class="p-d-flex p-jc-between">
-      <button
-        pButton
-        type="submit"
-        (click)="onSubmit()"
-        icon="pi pi-check"
-        label="Share"
-        [disabled]="!blogForm.valid">
-      </button>
-      <button pButton
-              (click)="onClear()"
-              icon="pi pi-times"
-              class="p-button-outlined p-button-danger"
-              label="Clear">
-      </button>
-    </div>
-  </form>
+  <div>
+    <form #blogForm="ngForm" (ngSubmit)="onSubmit()">
+      <h3>Editor</h3>
+      <p-editor
+        [(ngModel)]="blogPost.body"
+        name="body"
+        required="true"
+        [style]="{'max-height': '300px', 'overflow': 'scroll'}">
+      </p-editor>
+      <br>
+      <div class="p-d-flex">
+        <button pButton
+                (click)="onClear()"
+                icon="pi pi-times"
+                class="p-button-outlined p-button-danger"
+                label="Clear">
+        </button>
+        <button
+          pButton
+          type="submit"
+          icon="pi pi-check"
+          label="Share"
+          [disabled]="!blogForm.valid">
+        </button>
+      </div>
+    </form>
+  </div>
 </section>

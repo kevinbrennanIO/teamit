@@ -3,6 +3,9 @@ import {IPost} from '../../../../shared/models/IPost';
 import firebase from 'firebase';
 import firestore = firebase.firestore;
 import {UserService} from '../../../../core/services/user.service';
+import {ContentService} from '../../../../core/services/content.service';
+import {TeamService} from '../../../../core/services/team.service';
+import {randomString} from '../../../../shared/utils/random';
 
 @Component({
   selector: 'app-blog-create',
@@ -12,30 +15,38 @@ import {UserService} from '../../../../core/services/user.service';
 export class BlogCreateComponent implements OnInit {
 
   loggedInUser: string;
-  text: string;
-  blogPost: IPost = {body: '', createdBy: '', createdTime: undefined, type: ''};
+  selectedTeam: string;
+  blogPost: IPost = {body: '', createdBy: '', createdTime: undefined, type: '', id: undefined};
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private contentService: ContentService,
+    private teamService: TeamService,
   ) {
   }
 
-  ngOnInit() {
-    this.loggedInUser = this.userService.loggedInUser();
+ async ngOnInit() {
+    this.loggedInUser = await this.userService.loggedInUser();
+
+    this.teamService.currentlySelectedTeam.subscribe(team => {
+      this.selectedTeam = team;
+   });
   }
 
   onSubmit() {
     this.blogPost = {
-      createdBy: this.userService.loggedInUser(),
-      createdTime: firestore.Timestamp.now(),
+      id: randomString(20),
+      createdBy: this.loggedInUser,
+      createdTime: Date.now(),
       type: 'blog',
       body: this.blogPost.body
     };
-    console.log(this.blogPost);
-    this.blogPost = {body: '', createdBy: '', createdTime: undefined, type: ''};
+    console.log(`DEBUG OUTPUT --> ${this.blogPost}`);
+    this.contentService.writePostToDB(this.blogPost, this.selectedTeam);
+    this.blogPost = {body: '', createdBy: '', createdTime: undefined, type: '', id: undefined};
   }
 
   onClear() {
-    this.blogPost = {body: '', createdBy: '', createdTime: undefined, type: ''};
+    this.blogPost = {body: '', createdBy: '', createdTime: undefined, type: '', id: undefined};
   }
 }

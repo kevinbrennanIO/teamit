@@ -20,7 +20,12 @@ import {TabViewModule} from 'primeng/tabview';
 import {BlogCreateComponent} from './components/blog-create/blog-create.component';
 import {QueryCreateComponent} from './components/query-create/query-create.component';
 import {TodoCreateComponent} from './components/todo-create/todo-create.component';
-
+import {InputTextModule} from 'primeng/inputtext';
+import {ChipsModule} from 'primeng/chips';
+import {QuillModule} from 'ngx-quill';
+import {PanelModule} from 'primeng/panel';
+import {SidebarModule} from 'primeng/sidebar';
+import {AdminComponent} from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +38,8 @@ import {TodoCreateComponent} from './components/todo-create/todo-create.componen
     ComposeComponent,
     BlogCreateComponent,
     QueryCreateComponent,
-    TodoCreateComponent
+    TodoCreateComponent,
+    AdminComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +51,16 @@ import {TodoCreateComponent} from './components/todo-create/todo-create.componen
     ChipModule,
     DividerModule,
     TabViewModule,
-    EditorModule
+    EditorModule,
+    InputTextModule,
+    ChipsModule,
+    QuillModule.forRoot({
+      modules: {
+        syntax: true
+      }
+    }),
+    PanelModule,
+    SidebarModule
   ],
   exports: [
     HomeComponent,

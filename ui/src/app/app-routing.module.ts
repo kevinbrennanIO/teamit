@@ -1,12 +1,15 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {AppComponent} from './app.component';
 import {ErrorComponent} from './shared/components/error/error.component';
-import {LoginComponent} from './shared/components/login/login.component';
 import {LogoutComponent} from './shared/components/logout/logout.component';
 import {CreateAccountComponent} from './shared/components/create-account/create-account.component';
-import {OktaAuthGuard, OktaCallbackComponent, OktaLoginRedirectComponent} from '@okta/okta-angular';
+import {OktaAuthGuard, OktaCallbackComponent} from '@okta/okta-angular';
+import {HomeComponent} from './modules/journal/components/home/home.component';
+import {SearchComponent} from './modules/journal/components/search/search.component';
+import {PreferencesComponent} from './modules/journal/components/preferences/preferences.component';
+import {AdminComponent} from './modules/journal/components/admin/admin.component';
 
+const CALLBACK_PATH = 'login/callback';
 
 const appRoutes: Routes = [
 
@@ -18,49 +21,40 @@ const appRoutes: Routes = [
   // Auth Routes
   {
     path: 'login',
-    component: OktaLoginRedirectComponent
+    redirectTo: '/home',
+    pathMatch: 'full'
   },
   {
     path: 'logout',
     component: LogoutComponent,
   },
   {
-    path: 'login/callback',
+    path: CALLBACK_PATH,
     component: OktaCallbackComponent
   },
-  // {
-  //   path: 'auth',
-  //   loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule),
-  //   canActivate: [OktaAuthGuard],
-  //   children: [
-  //     { path: 'login' },
-  //     { path: 'reset-password' },
-  //     { path: 'signup' }
-  //   ]
-  // },
-
-  // Main Routes
   {
-    path: ':id',
-    loadChildren: () => import('./modules/journal/journal.module').then(m => m.JournalModule),
+    path: 'home',
+    component: HomeComponent,
     canActivate: [OktaAuthGuard],
+  },
+  {
+    path: 'search',
+    component: SearchComponent,
+    canActivate: [OktaAuthGuard]
+  },
+  {
+    path: 'preferences',
+    component: PreferencesComponent,
+    canActivate: [OktaAuthGuard]
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [OktaAuthGuard]
   },
 
   // Error Routes
-  {path: '**', component: ErrorComponent},
-
-
-  // {
-  //   path: '',
-  //   component: AppComponent,
-  // },
-  // {path: '', redirectTo: '/home', pathMatch: 'full'},
-
-  // {
-  //   path: 'auth',
-  //   loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule),
-  // },
-
+  {path: '**', component: ErrorComponent}
 ];
 
 @NgModule({

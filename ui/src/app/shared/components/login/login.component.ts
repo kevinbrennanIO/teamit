@@ -23,8 +23,9 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.oktaAuth.signInWithRedirect({
-      originalUri: 'userid/home'
+      originalUri: '/home'
+    }).then(r => {
+      console.log(r);
     });
   }
-
 }

@@ -56,3 +56,13 @@ hr {
 .width-80 {
   width: 80%;
 }
+
+.clickable {
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+.clickable:hover {
+  color: #002a94;
+  font-weight: bolder;
+}

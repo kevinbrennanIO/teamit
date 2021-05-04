@@ -1,5 +1,9 @@
 <div *ngFor="let team of userTeams" class="team-icon">
   <div class="two-chars">
-    <a (click)="broadcastSelectedTeam($event)">{{ team }}</a>
+    <a
+      (click)="broadcastSelectedTeam($event)"
+      pTooltip="{{ team }}"
+      tooltipPosition="top">{{ team }}
+    </a>
   </div>
 </div>

@@ -1,18 +1,19 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ErrorComponent } from './components/error/error.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { ButtonModule } from 'primeng/button';
-import { LoginComponent } from './components/login/login.component';
-import { LogoutComponent } from './components/logout/logout.component';
-import { CreateAccountComponent } from './components/create-account/create-account.component';
-import { InputTextModule } from 'primeng/inputtext';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ErrorComponent} from './components/error/error.component';
+import {ProfileComponent} from './components/profile/profile.component';
+import {ButtonModule} from 'primeng/button';
+import {LoginComponent} from './components/login/login.component';
+import {LogoutComponent} from './components/logout/logout.component';
+import {CreateAccountComponent} from './components/create-account/create-account.component';
+import {InputTextModule} from 'primeng/inputtext';
 import {FormsModule} from '@angular/forms';
 import {PasswordModule} from 'primeng/password';
 import {RouterModule} from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import {ToastModule} from 'primeng/toast';
 import {TooltipModule} from 'primeng/tooltip';
+import {LoadingComponent} from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {TooltipModule} from 'primeng/tooltip';
     ProfileComponent,
     LoginComponent,
     LogoutComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +44,9 @@ import {TooltipModule} from 'primeng/tooltip';
     CreateAccountComponent,
     ReactiveFormsModule,
     ToastModule,
-    TooltipModule
+    TooltipModule,
+    LoadingComponent
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+}

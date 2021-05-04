@@ -8,14 +8,12 @@ import { OktaAuthService } from '@okta/okta-angular';
 })
 export class LogoutComponent implements OnInit {
 
-  isAuthenticated: boolean;
-
   constructor(public oktaAuth: OktaAuthService) { }
 
   ngOnInit(): void {
   }
 
   logout() {
-    this.oktaAuth.signOut();
+    this.oktaAuth.signOut().then(r => {});
   }
 }

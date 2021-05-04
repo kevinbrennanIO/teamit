@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {UserService} from '../../../core/services/user.service';
-import {IUser, User} from '../../models/IUser';
 import {MessageService} from 'primeng/api';
+import {OktaAuthService} from '@okta/okta-angular';
 
 @Component({
   selector: 'app-create-account',
@@ -15,15 +15,21 @@ export class CreateAccountComponent implements OnInit {
   registrationForm: FormGroup;
   userResponseCode: number;
   loading = false;
+  isAuthenticated: boolean;
 
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    public oktaAuth: OktaAuthService
   ) {
+    this.oktaAuth.$authenticationState.subscribe(
+      (isAuthenticated: boolean) => this.isAuthenticated = isAuthenticated
+    );
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.isAuthenticated = await this.oktaAuth.isAuthenticated();
     this.registrationForm = this.fb.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
@@ -97,6 +103,12 @@ export class CreateAccountComponent implements OnInit {
   }
 
   public createAccount() {
+  }
+
+  login() {
+    this.oktaAuth.signInWithRedirect({
+      originalUri: '/home'
+    }).then(r => {});
   }
 }
 

@@ -63,7 +63,9 @@
     <!-- content section -->
     <div class="journal-main">
       <app-wall></app-wall>
-      <app-compose></app-compose>
+      <div *ngIf="selectedTeam !== ''">
+        <app-compose></app-compose>
+      </div>
     </div>
   </div>
 </div>

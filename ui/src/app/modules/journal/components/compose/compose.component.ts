@@ -4,32 +4,32 @@ import {MenuItem} from 'primeng/api';
 @Component({
   selector: 'app-compose',
   templateUrl: './compose.component.html',
-  styleUrls: ['./compose.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./compose.component.scss']
 })
 export class ComposeComponent implements OnInit {
-
-  constructor() {
-  }
 
   createOptions: MenuItem[];
   activeOption: MenuItem;
 
-  text: string;
-
+  constructor() {
+  }
 
   ngOnInit() {
     this.createOptions = [
-      {label: 'blog', icon: 'pi pi-fw pi-pencil'},
-      {label: 'query', icon: 'pi pi-fw pi-question-circle'},
-      {label: 'todo', icon: 'pi pi-fw pi-check'},
+      {
+        label: 'blog',
+        icon: 'pi pi-fw pi-pencil'
+      },
+      {
+        label: 'query',
+        icon: 'pi pi-fw pi-question-circle'
+      },
+      {
+        label: 'todo',
+        icon: 'pi pi-fw pi-check',
+        disabled: true
+      },
     ];
     this.activeOption = this.createOptions[0];
-    console.log(this.activeOption);
-  }
-
-  changeActiveOption($event) {
-    console.log($event.index);
   }
 }
-
