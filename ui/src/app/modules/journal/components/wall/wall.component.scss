@@ -56,3 +56,14 @@ space-between {
   color: #6c757d;
   padding-bottom: 10px;
 }
+
+.thumbs {
+  padding: 10px 10px 10px 10px;
+  cursor: pointer;
+}
+
+.thumbs:hover {
+  background-color: #c1c1c1;
+  color: #1c2830;
+  border-radius: 5px;
+}

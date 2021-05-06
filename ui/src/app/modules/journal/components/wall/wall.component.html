@@ -17,10 +17,10 @@
         <p><strong>Status: </strong>{{ post.status ? post.status : 'n/a'}}</p>
         <p><strong>Helpful: </strong></p>
         <div class="p-d-flex p-jc-sm-start">
-          <i (click)="thumbsUpPost()" style="padding: 0px 10px 0px 10px;"
-             class="pi pi-thumbs-up"></i><span>{{ post.thumbsUp }}</span>
-          <i (click)="thumbsDownPost()" style="padding: 0px 10px 0px 10px;"
-             class="pi pi-thumbs-down"></i><span>{{ post.thumbsDown }}</span>
+          <i (click)="thumbsUpPost(post.id)"
+             class="pi pi-thumbs-up thumbs"></i><span style="padding: 10px 0px 0px 0px;">{{ post.thumbsUp }}</span>
+          <i (click)="thumbsDownPost(post.id)"
+             class="pi pi-thumbs-down thumbs"></i><span style="padding: 10px 0px 0px 0px;">{{ post.thumbsDown }}</span>
         </div>
       </div>
       <div class="p-mr-2 card-renderer">

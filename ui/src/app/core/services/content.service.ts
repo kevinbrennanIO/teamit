@@ -2,7 +2,8 @@ import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {IPost} from '../../shared/models/IPost';
 import {OktaAuthService} from '@okta/okta-angular';
-import {Observable} from 'rxjs';
+import firebase from 'firebase';
+import DocumentSnapshot = firebase.firestore.DocumentSnapshot;
 
 @Injectable({
   providedIn: 'root'
@@ -41,8 +42,47 @@ export class ContentService {
     const query = this.db.collection(`teams/${teamName}/posts`).ref.where('id', '==', postID);
     query.get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
-        doc.ref.delete().then(r => {});
+        doc.ref.delete().then(r => {
+        });
       });
     });
+  }
+
+  async thumbsUp(teamName, postID) {
+    let currentThumbsUp;
+    await this.db.collection(`teams/${teamName}/posts`).doc(postID).get().toPromise().then(
+      (doc: DocumentSnapshot<IPost>) => {
+      if (doc.exists) {
+        currentThumbsUp = doc.data().thumbsUp;
+      } else {
+        console.log('No such document!');
+      }
+    }).catch((error) => {
+      console.log('Error getting document: ', error);
+    });
+    const newThumbsUp = currentThumbsUp + 1;
+    console.log(newThumbsUp);
+    this.db.collection<IPost>(`teams/${teamName}/posts`).doc(postID).update({
+      thumbsUp: newThumbsUp
+    }).then(r => {});
+  }
+
+  async thumbsDown(teamName, postID) {
+    let currentThumbsDown;
+    await this.db.collection(`teams/${teamName}/posts`).doc(postID).get().toPromise().then(
+      (doc: DocumentSnapshot<IPost>) => {
+        if (doc.exists) {
+          currentThumbsDown = doc.data().thumbsDown;
+        } else {
+          console.log('No such document!');
+        }
+      }).catch((error) => {
+      console.log('Error getting document: ', error);
+    });
+    const newThumbsDown = currentThumbsDown + 1;
+    console.log(newThumbsDown);
+    this.db.collection<IPost>(`teams/${teamName}/posts`).doc(postID).update({
+      thumbsDown: newThumbsDown
+    }).then(r => {});
   }
 }

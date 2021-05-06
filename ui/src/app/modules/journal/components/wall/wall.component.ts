@@ -75,12 +75,12 @@ export class WallComponent implements OnInit, AfterViewChecked {
     }
   }
 
-  thumbsUpPost() {
-
+  thumbsUpPost(postID) {
+    this.contentService.thumbsUp(this.selectedTeam, postID);
   }
 
-  thumbsDownPost() {
-
+  thumbsDownPost(postID) {
+    this.contentService.thumbsDown(this.selectedTeam, postID);
   }
 
   convertTime(unixTimeStamp: number) {
