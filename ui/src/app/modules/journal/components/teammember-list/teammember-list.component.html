@@ -1,6 +1,12 @@
 <div class="teamname p-text-truncate"><i class="pi pi-users" style="padding-right: 8px; font-size: 1em"></i>{{ teamName | titlecase }}</div>
 <div class="top-spacer"></div>
 <div *ngFor="let member of selectedTeamMembers">
-  <div class="team-member"><i style="font-size: .6em; padding-right: 8px;" class="pi pi-circle-on"></i><a (click)="loadSelectedUserJournal($event)">{{ member }}</a></div>
+  <div class="team-member">
+    <i style="padding-right: 8px;" class="pi pi-user"></i>
+    <a
+      [ngClass]="{'selectedTeamMember': highlightSelectedTeamMember(member)}"
+      (click)="broadcastSelectedTeamMember($event)">{{ member }}
+    </a>
+  </div>
 </div>
 

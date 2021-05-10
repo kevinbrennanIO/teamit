@@ -36,9 +36,13 @@ func requestHandler(res http.ResponseWriter, req *http.Request) {
 	switch req.Method {
 	case "GET":
 		if paramCount == 1 {
-			TeamSentiment(team, fsc)
+			score := TeamSentiment(team, fsc)
+			tmp := fmt.Sprintf("%.4f", score)
+			fmt.Fprint(res, fmt.Sprintf(tmp))
 		} else {
-			IndividualSentiment(team, user, fsc)
+			score := IndividualSentiment(team, user, fsc)
+			tmp := fmt.Sprintf("%.4f", score)
+			fmt.Fprint(res, fmt.Sprintf(tmp))
 		}
 	case "OPTIONS":
 		return

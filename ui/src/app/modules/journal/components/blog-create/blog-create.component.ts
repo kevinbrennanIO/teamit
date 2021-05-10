@@ -39,7 +39,9 @@ export class BlogCreateComponent implements OnInit {
       createdBy: this.loggedInUser,
       createdTime: Date.now(),
       type: 'blog',
-      body: this.blogPost.body
+      body: this.blogPost.body,
+      thumbsUp: 0,
+      thumbsDown: 0
     };
     console.log(`DEBUG OUTPUT --> ${this.blogPost}`);
     this.contentService.writePostToDB(this.blogPost, this.selectedTeam);

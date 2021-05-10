@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import { PrimeNGConfig } from 'primeng/api';
+import {PrimeNGConfig} from 'primeng/api';
+import {GlobalConstants} from './common/global-constants';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,10 @@ import { PrimeNGConfig } from 'primeng/api';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private primengConfig: PrimeNGConfig) {}
+  title = GlobalConstants.SITE_TITLE;
+
+  constructor(private primengConfig: PrimeNGConfig) {
+  }
 
   ngOnInit() {
     this.primengConfig.ripple = true;

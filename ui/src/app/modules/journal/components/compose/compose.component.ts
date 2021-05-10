@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {MenuItem} from 'primeng/api';
+import {TeamService} from '../../../../core/services/team.service';
 
 @Component({
   selector: 'app-compose',
@@ -10,11 +11,20 @@ export class ComposeComponent implements OnInit {
 
   createOptions: MenuItem[];
   activeOption: MenuItem;
+  selectedTeamMember = '';
 
-  constructor() {
+  constructor(
+    private teamService: TeamService
+  ) {
   }
 
   ngOnInit() {
+
+    // subscribe to the selected user
+    this.teamService.currentlySelectedUser.subscribe(user => {
+      this.selectedTeamMember = user;
+    });
+
     this.createOptions = [
       {
         label: 'blog',
