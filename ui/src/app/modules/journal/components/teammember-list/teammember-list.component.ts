@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TeamService} from '../../../../core/services/team.service';
 
-
 @Component({
   selector: 'app-teammember-list',
   templateUrl: './teammember-list.component.html',
@@ -12,10 +11,12 @@ export class TeammemberListComponent implements OnInit {
   loading = false;
   teamName = 'choose team';
   selectedTeam: string;
+  selectedTeamMember: string;
   selectedTeamMembers = [];
 
+
   constructor(
-    private teamService: TeamService
+    private teamService: TeamService,
   ) {
   }
 
@@ -31,11 +32,16 @@ export class TeammemberListComponent implements OnInit {
     });
   }
 
-  loadSelectedUserJournal($event) {
-    this.loading = true;
-    const selectedUser = $event.target.innerText;
+  broadcastSelectedTeamMember($event) {
+    this.selectedTeamMember = $event.target.innerText;
+    console.log(`BROADCASTING SELECTED TEAM MEMBER : ${this.selectedTeamMember}`);
+    this.teamService.selectedTeamMember(this.selectedTeamMember);
+  }
 
-    // do the work
-    this.loading = false;
+  highlightSelectedTeamMember(selected) {
+    switch (selected) {
+      case this.selectedTeamMember:
+        return 'green';
+    }
   }
 }

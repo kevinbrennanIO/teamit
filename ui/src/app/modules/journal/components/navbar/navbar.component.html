@@ -1,0 +1,65 @@
+
+  <header class="header-row">
+    <div class="gradient"></div>
+    <div class="flex-header">
+      <div>
+        <img class="logo-small" src="../../../../../assets/teamitLogo.png" alt="teamit-logo">
+      </div>
+      <span class="nav-menu-items">
+        <button pTooltip="Home"
+                [routerLink]="['../home']"
+                routerLinkActive="router-link-active"
+                style="color: white;"
+                pButton
+                type="button"
+                class="p-button-lg p-button-text"
+                icon="pi pi-home"
+                iconPos="middle"
+                tooltipPosition="left">
+        </button>
+      </span>
+      <span class="nav-menu-items">
+        <button pTooltip="Search"
+                [routerLink]="['../search']"
+                routerLinkActive="router-link-active"
+                style="color: white;"
+                pButton
+                type="button"
+                class="p-button-lg p-button-text"
+                icon="pi pi-search"
+                iconPos="middle"
+                tooltipPosition="left">
+        </button>
+      </span>
+      <span class="nav-menu-items">
+        <button pTooltip="Admin Dashboard"
+                [routerLink]="['../admin']"
+                routerLinkActive="router-link-active"
+                style="color: white;"
+                pButton
+                type="button"
+                class="p-button-lg p-button-text"
+                icon="pi pi-chart-bar"
+                iconPos="middle"
+                tooltipPosition="left">
+        </button>
+      </span>
+      <span class="nav-menu-items">
+        <button pTooltip="Preferences"
+                [routerLink]="['../preferences']"
+                routerLinkActive="router-link-active"
+                style="color: white;"
+                pButton
+                type="button"
+                class="p-button-lg p-button-text"
+                icon="pi pi-cog"
+                iconPos="middle"
+                tooltipPosition="left">
+        </button>
+      </span>
+      <span class="nav-menu-items">
+        <app-logout></app-logout>
+      </span>
+    </div>
+  </header>
+

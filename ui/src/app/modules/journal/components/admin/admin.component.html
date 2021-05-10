@@ -1,1 +1,44 @@
-<p>admin works!</p>
+<div class="main-journal-home">
+  <!-- main nav -->
+  <app-navbar></app-navbar>
+  <!-- main -->
+  <div class="main-row">
+    <!-- team nav -->
+    <div class="team-nav">
+<!--      <app-team-list></app-team-list>-->
+    </div>
+    <!-- teammate nav -->
+    <div class="teammate-nav">
+      <p-button
+        label='Team Metric'
+        (click)='metricEvent()'
+        icon='pi pi-chart-bar'
+        iconPos='left'
+        [style]='{"width": "100%", "background-color": "#1c2830", "border": "none"}'
+      >
+      </p-button>
+        <p-button
+          label='Team Manage'
+          (click)='manageEvent()'
+          icon='pi pi-id-card'
+          iconPos='left'
+          [style]='{"width": "100%", "background-color": "#1c2830", "border": "none"}'
+        >
+        </p-button>
+    </div>
+    <!-- content section -->
+    <div id="journal-main">
+      <div *ngIf="selectedTab === 'Team Metrics'">
+        <app-metrics></app-metrics>
+      </div>
+      <div *ngIf="selectedTab === 'Team Manage'">
+        <app-manage></app-manage>
+      </div>
+      <div *ngIf="selectedTab === ''">
+        <div class="p-col-12">
+          <h2 class="notSelected">Nothing Selected</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

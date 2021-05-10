@@ -33,7 +33,7 @@ func TeamSentiment(team string, fsc *firestore.Client) (sentimentScore float64) 
 	// team collection path
 	collection := fmt.Sprintf("teams/%s/posts", team)
 
-	// fetch posts and all replies
+	// fetch posts and all comments
 	iter := fsc.Collection(collection).Documents(ctx)
 	defer iter.Stop()
 	for {
@@ -49,17 +49,16 @@ func TeamSentiment(team string, fsc *firestore.Client) (sentimentScore float64) 
 		tmp := post.Data()["body"].(string)
 		interactions = append(interactions, tmp)
 
-		// get post replies
+		// get post comments
 		docID := post.Ref.ID
-		path := fmt.Sprintf("teams/%v/posts/%v/replies", team, docID)
+		path := fmt.Sprintf("teams/%v/posts/%v/comments", team, docID)
 		iter2 := fsc.Collection(path).Documents(ctx)
-		replies, _ := iter2.GetAll()
-		for _, eachReply := range replies {
+		comments, _ := iter2.GetAll()
+		for _, eachReply := range comments {
 			tmp2 := eachReply.Data()["body"].(string)
 			interactions = append(interactions, tmp2)
 		}
 	}
-
 	// compute sentiment score
 	for _, eachInteraction := range interactions {
 		parsedText := sentitext.Parse(eachInteraction, lexicon.DefaultLexicon)
@@ -115,21 +114,16 @@ func IndividualSentiment(team string, userEmail string, fsc *firestore.Client) (
 		// save posts to interactions array
 		tmpBody := post.Data()["body"].(string)
 		interactions = append(interactions, tmpBody)
-	}
 
-	// a collectionGroup index is used in Firestore for grouping
-	// all replies for easier searching.
-	replyIter := fsc.CollectionGroup("replies").Where("createdBy", "==", userEmail).Documents(ctx)
-	for {
-		doc, err := replyIter.Next()
-		if err == iterator.Done {
-			break
+		// get post comments
+		docID := post.Ref.ID
+		path := fmt.Sprintf("teams/%v/posts/%v/comments", team, docID)
+		iter2 := fsc.Collection(path).Documents(ctx)
+		comments, _ := iter2.GetAll()
+		for _, eachReply := range comments {
+			tmp2 := eachReply.Data()["body"].(string)
+			interactions = append(interactions, tmp2)
 		}
-		if err != nil {
-			_ = fmt.Errorf("Reply Iterator Error: %v", err)
-		}
-		tmpBody := doc.Data()["body"].(string)
-		interactions = append(interactions, tmpBody)
 	}
 
 	// compute sentiment score

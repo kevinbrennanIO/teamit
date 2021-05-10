@@ -1,12 +1,10 @@
-import firebase from 'firebase';
-
 export interface IPost {
   title?: string;
   body: string;
   createdBy: string;
   createdTime: number;
   resolvedBy?: string;
-  resolvedTime?: firebase.firestore.Timestamp;
+  resolvedTime?: number;
   tags?: string[];
   status?: string;
   type: string;

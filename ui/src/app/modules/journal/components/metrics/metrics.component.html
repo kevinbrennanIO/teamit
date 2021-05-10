@@ -1,0 +1,115 @@
+<code><pre>{{ individualSentimentData | json }}</pre></code>
+<div class="p-col-12 metric-panel">
+  <h3>
+    Select Team
+    <i class="pi pi-info-circle"
+       pTooltip="View health metrics of the selected team">
+    </i>
+  </h3>
+  <p>Teams you administer will be displayed, allowing you to view specific metrics for the chosen team.</p>
+  <p-dropdown (onChange)="gatherTotalTeamMetrics($event)" [options]="teams" [(ngModel)]="selectedTeam"
+              optionLabel="name"></p-dropdown>
+</div>
+
+<div *ngIf="selectedTeam !== undefined else noTeamSelected" class="p-grid">
+  <div class="p-col-12">
+    <h3>
+      Team Members
+      <i class="pi pi-info-circle"
+         pTooltip="Current members of the selected team.">
+      </i>
+    </h3>
+    <p-table [value]="teamMembersFullDetail">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Job Title</th>
+          <th>Nationality</th>
+          <th>Status</th>
+          <th>Remove User</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-member>
+        <tr>
+          <td>{{member.firstname}} {{member.lastname}}</td>
+          <td>{{member.email}}</td>
+          <td>{{member.jobTitle}}</td>
+          <td>{{member.nationality}}</td>
+          <td [style]="{'color':'green'}">{{member.status}}</td>
+          <td>
+            <p-button label="Remove"></p-button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <div class="p-col-6">
+    <h3>
+      Query Collaboration
+      <i class="pi pi-info-circle"
+         pTooltip="Total number of open and resolved queries for the specified period.">
+      </i>
+    </h3>
+    <div class="metric-panel">
+      <p-chart type="doughnut" [data]="queryCollaborationData"></p-chart>
+    </div>
+  </div>
+
+  <div class="p-col-6">
+    <h3>
+      Contributions
+      <i class="pi pi-info-circle"
+         pTooltip="Total number of system interactions per user. Including posts, queries, comments etc.">
+      </i>
+    </h3>
+    <div class="metric-panel">
+      <p-chart type="polarArea" [data]="contributionData"></p-chart>
+    </div>
+  </div>
+  <div class="p-col-12">
+    <h3>
+      Individual Sentiment
+      <i class="pi pi-info-circle"
+         pTooltip="Individual sentiment is rated on a scale of -1.0 to 1.0, with -1.0 being extremely negative and 1.0
+being extremely positive">
+      </i>
+    </h3>
+    <div class="metric-panel">
+      <!--      <p-chart type="line" [data]="sentimentData"></p-chart>-->
+      <p-chart type="bar" [data]="individualSentimentData"></p-chart>
+    </div>
+  </div>
+
+  <div class="p-col-6">
+    <h3>
+      Tag Analysis
+      <i class="pi pi-info-circle"
+         pTooltip="Most frequently used tags for the specified period.">
+      </i>
+    </h3>
+    <div class="metric-panel">
+      <p-chart type="horizontalBar" [data]="tagAnalysisData"></p-chart>
+    </div>
+  </div>
+
+  <div style="height: 100%" class="p-col-6">
+    <h3>
+      Team Sentiment
+      <i class="pi pi-info-circle"
+         pTooltip="Team sentiment is rated on a scale of -1.0 to 1.0, with -1.0 being extremely negative and 1.0
+being extremely positive">
+      </i>
+    </h3>
+    <div class="metric-panel">
+      <p>Team sentiment is rated on a scale of -1.0 to 1.0, with -1.0 being extremely negative and 1.0
+        being extremely positive</p>
+      <h1 style="font-size: 6em; text-align: center;">{{ teamSentimentData }}</h1>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #noTeamSelected>
+</ng-template>
+

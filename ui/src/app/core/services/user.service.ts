@@ -66,4 +66,9 @@ export class UserService {
     });
     return this.userEmail;
   }
+
+  getFullUserDetails(user) {
+    return this.db.collection(`users`, ref =>
+      ref.where('email', '==', user)).valueChanges();
+  }
 }

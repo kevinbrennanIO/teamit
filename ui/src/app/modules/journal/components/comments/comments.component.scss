@@ -1,0 +1,11 @@
+.scrollable {
+  background-color: #efefef;
+  padding: 20px;
+  width: 100%;
+  min-height: 70vh;
+  overflow: auto;
+  scrollbar-width: none;
+  overflow-wrap: normal;
+  word-wrap: break-word;
+  -ms-overflow-style: none; /* IE and Edge */
+}

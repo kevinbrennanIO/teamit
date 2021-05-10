@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
 
+  selectedTab = '';
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  metricEvent() {
+    this.selectedTab = 'Team Metrics';
+  }
+
+  manageEvent() {
+    this.selectedTab = 'Team Manage';
+  }
 }

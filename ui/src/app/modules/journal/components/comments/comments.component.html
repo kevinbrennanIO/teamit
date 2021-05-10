@@ -1,0 +1,19 @@
+<h2>Comments</h2>
+<code>Post ID: {{selectedPostID}}</code>
+<p-divider></p-divider>
+
+<div class="scrollable">
+  <div *ngFor="let comment of comments | async">
+    <br>
+    <div style=" color: #6c757d;"> {{comment.createdBy}} - {{convertTimestamp(comment.createdTime)}}</div>
+    <p-card>{{comment.body}}</p-card>
+  </div>
+  <br>
+  <h4>Share feedback</h4>
+</div>
+<div class="editor">
+  <textarea [(ngModel)]="body" pInputTextarea autoResize=true style="width: 100%;"></textarea><br>
+  <button pButton (click)="commentOnPost()" style="width: 100%;" label="Send"></button>
+</div>
+
+

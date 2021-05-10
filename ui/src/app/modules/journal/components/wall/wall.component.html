@@ -25,7 +25,19 @@
       </div>
       <div class="p-mr-2 card-renderer">
         <div *ngIf="post.type === 'query'">
-          <h3>{{ post.title }}</h3>
+          <div class="p-d-flex p-jc-between">
+            <div class="p-mr-2"><h3>{{ post.title }}</h3></div>
+            <div style="margin: auto;" class="p-mr-2">
+              <button
+                pButton
+                (click)="resolvePost(post.id)"
+                class="p-button-sm p-button-outlined p-button-rounded"
+                icon="pi pi-check"
+                label="resolve"
+              >
+              </button>
+            </div>
+          </div>
           <p class="postIdStyle">id: {{ post.id }}</p>
           <span *ngFor="let tag of post.tags">
           <p-chip>{{ tag }}</p-chip><span>&nbsp;</span>
@@ -39,29 +51,38 @@
         </div>
         <div>
           <quill-view-html [content]="post.body"></quill-view-html>
-        </div><br>
-        <div>
-          <p-sidebar [(visible)]="showComments" styleClass="p-sidebar-md" position="right">
-            <div style="overflow-y: scroll; height:600px">
-              <h3>Comments</h3>
-              <p-divider></p-divider>
-              <p>some</p>
-              <p>random</p>
-              <p>comments</p>
-            </div>
-            <p-divider></p-divider>
-            <app-blog-create></app-blog-create>
-          </p-sidebar>
         </div>
+        <br>
       </div>
       <div class="p-mr-2">
-        <button pButton type="button" icon="pi pi-comments" class="p-button-success spacer" pTooltip="View comments"
-                tooltipPosition="left" (click)="toggleComments()"></button>
-        <button pButton type="button" icon="pi pi-pencil" class="p-button-info spacer" pTooltip="Edit"
-                tooltipPosition="left" (click)="editPost()"></button>
-        <button pButton type="button" icon="pi pi-trash" class="p-button-danger p-button-outlined spacer"
-                pTooltip="Delete" tooltipPosition="left" (click)="deletePost(post.id)"></button>
+        <i
+          (click)="loadComments(post.id)"
+          tooltipPosition="left"
+          pTooltip="View comments"
+          class="pi pi-comments spacer"
+          severity="info"
+        >
+        </i>
+        <i
+          (click)="editPost()"
+          tooltipPosition="left"
+          class="pi pi-pencil spacer"
+          pTooltip="Edit"
+        >
+        </i>
+        <i
+          (click)="deletePost(post.id)"
+          class="pi pi-trash spacer"
+          tooltipPosition="left"
+          pTooltip="Delete"
+        >
+        </i>
       </div>
+    </div>
+    <div>
+      <p-sidebar [(visible)]="showComments" styleClass="p-sidebar-md" [baseZIndex]="10000" position="right">
+        <app-comments></app-comments>
+      </p-sidebar>
     </div>
   </div>
 </section>

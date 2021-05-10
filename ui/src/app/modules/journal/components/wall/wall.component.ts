@@ -1,5 +1,6 @@
-import {AfterViewChecked, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewChecked, Component, OnInit} from '@angular/core';
 import {ContentService} from '../../../../core/services/content.service';
+import {GlobalConstants} from '../../../../common/global-constants';
 import {UserService} from '../../../../core/services/user.service';
 import {TeamService} from '../../../../core/services/team.service';
 import {IPost} from '../../../../shared/models/IPost';
@@ -18,6 +19,8 @@ export class WallComponent implements OnInit, AfterViewChecked {
   loading = true;
   showComments = false;
   selectedTeam = '';
+  selectedPostID;
+  selectedTeamMember;
   userEmail;
   today = new Date().toDateString();
 
@@ -30,13 +33,24 @@ export class WallComponent implements OnInit, AfterViewChecked {
   }
 
   async ngOnInit() {
-    this.userEmail = await this.userService.loggedInUser();
-    // get currently selected team
-    this.teamService.currentlySelectedTeam.subscribe(team => {
-      // load team specific posts
-      this.selectedTeam = team;
-      this.posts = this.contentService.fetchTeamPosts(team, this.userEmail);
-      this.loading = false;
+    // retrieve logged-in user and store as Global Const
+    GlobalConstants.LOGGED_IN_USER = await this.userService.loggedInUser();
+
+    // subscribe to changes on selected user
+    // behavior subject
+    this.teamService.currentlySelectedUser.subscribe(user => {
+      this.selectedTeamMember = user;
+
+      // subscribe to changes on selected team
+      // behavior subject
+      this.teamService.currentlySelectedTeam.subscribe(team => {
+        this.selectedTeam = team;
+
+        // fetch required data as per specified
+        // parameters [ team, teamMember]
+        this.posts = this.contentService.fetchTeamPosts(team, this.selectedTeamMember);
+        this.loading = false;
+      });
     });
   }
 
@@ -44,10 +58,11 @@ export class WallComponent implements OnInit, AfterViewChecked {
     // this.scrollToBottom();
   }
 
-  toggleComments() {
+  loadComments(postID) {
     if (this.showComments) {
       this.showComments = false;
     } else {
+      this.broadcastPostID(postID);
       this.showComments = true;
     }
   }
@@ -96,5 +111,15 @@ export class WallComponent implements OnInit, AfterViewChecked {
 
   scrollToBottom() {
     document.getElementById('journal-main').scrollTo(0, 10000000000);
+  }
+
+  broadcastPostID(postID) {
+    this.selectedPostID = postID;
+    console.log(`BROADCASTING SELECTED POST ID : ${this.selectedPostID}`);
+    this.teamService.selectedPostID(postID);
+  }
+
+  resolvePost(postID) {
+    this.contentService.resolvePost(this.selectedTeam, postID);
   }
 }
