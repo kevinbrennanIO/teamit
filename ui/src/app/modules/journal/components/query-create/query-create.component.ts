@@ -48,7 +48,6 @@ export class QueryCreateComponent implements OnInit {
   }
 
   onSubmit() {
-
     this.queryPost = {
       id: randomString(20),
       body: this.queryPost.body,

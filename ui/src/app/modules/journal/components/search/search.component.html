@@ -1,2 +1,32 @@
 <app-navbar></app-navbar>
-<p>search works!</p>
+<div class="search-container">
+  <h1>Need assistance...</h1>
+  <p>Start typing and <strong><i>Teamit's smart engine</i></strong> will pair your query with matching results</p>
+  <br>
+  <ais-instantsearch [config]="config">
+    <ais-search-box></ais-search-box>
+    <p-divider></p-divider>
+    <ais-hits>
+      <ng-template let-hits="hits" let-results="results">
+        <div *ngIf="hits.length === 0">
+          No results found matching <strong>{{results.query}}</strong>.
+        </div>
+        <div *ngIf="results.query">
+          <div *ngFor="let hit of hits" class="result-content">
+            <section>
+              <h3>{{hit.title}}</h3>
+              <pre>ID: {{hit.id}}</pre>
+              <pre>Asked By: {{hit.createdBy}}</pre>
+              <span *ngFor="let tag of hit.tags">
+                <p-chip>{{ tag }}</p-chip><span>&nbsp;</span>
+              </span>
+              <a href="">View Comments</a>
+              <p-divider></p-divider>
+              <quill-view-html [content]="hit.body"></quill-view-html>
+            </section>
+          </div>
+        </div>
+      </ng-template>
+    </ais-hits>
+  </ais-instantsearch>
+</div>

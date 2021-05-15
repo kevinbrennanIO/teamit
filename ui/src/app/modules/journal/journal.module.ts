@@ -19,6 +19,7 @@ import {WallComponent} from './components/wall/wall.component';
 import {JournalRoutingModule} from './journal-routing.module';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {SharedModule} from '../../shared/shared.module';
+import {NgAisModule} from 'angular-instantsearch';
 import {InputTextModule} from 'primeng/inputtext';
 import {PanelMenuModule} from 'primeng/panelmenu';
 import {DropdownModule} from 'primeng/dropdown';
@@ -80,6 +81,7 @@ import {QuillModule} from 'ngx-quill';
     PanelMenuModule,
     DropdownModule,
     TableModule,
+    NgAisModule.forRoot(),
     QuillModule.forRoot({
       modules: {
         syntax: true
