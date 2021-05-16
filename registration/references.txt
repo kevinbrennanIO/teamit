@@ -1,0 +1,9 @@
+The Registration API was created while referencing
+the following resources, available online.
+
+Official Documentation was used
+===============================
+- https://golang.org/doc/
+- https://pkg.go.dev/cloud.google.com/go/firestore
+- https://github.com/okta/okta-sdk-golang
+

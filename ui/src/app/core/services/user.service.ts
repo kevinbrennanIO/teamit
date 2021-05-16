@@ -2,10 +2,7 @@ import {Injectable} from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {OktaAuthService} from '@okta/okta-angular';
-
 import {IUser} from '../../shared/models/IUser';
-import {Observable} from 'rxjs';
-
 
 @Injectable({
   providedIn: 'root'
@@ -38,16 +35,13 @@ export class UserService {
     return responseCode;
   }
 
+  // check if selected team name is available
   isTeamnameAvailable(team: string) {
     return 200;
   }
 
+  // create user entity within Okta
   createOktaEntity() {
-
-  }
-
-  createFirestoreEntity() {
-
   }
 
   // returns a list of teams for a given user
@@ -60,6 +54,7 @@ export class UserService {
       ref.where('email', '==', email)).valueChanges();
   }
 
+  // fetch the email of loggedInUser
   async loggedInUser() {
     await this.oktaAuth.getUser().then((u) => {
       this.userEmail = u.email;
@@ -67,8 +62,17 @@ export class UserService {
     return this.userEmail;
   }
 
+  // fetch full details for logged in user
   getFullUserDetails(user) {
-    return this.db.collection(`users`, ref =>
+    return this.db.collection<IUser>(`users`, ref =>
       ref.where('email', '==', user)).valueChanges();
+  }
+
+  // update user details
+  updateUser(user, updates) {
+    console.log(user, updates);
+    // this.db.collection<IUser>(`users`, ref =>
+    //   ref.where('email', '==', user)).stateChanges();
+    // );
   }
 }

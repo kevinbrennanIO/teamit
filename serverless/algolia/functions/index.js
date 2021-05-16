@@ -1,3 +1,7 @@
+/*
+ https://fireship.io/lessons/algolia-cloud-functions/
+ https://www.youtube.com/watch?v=3Z0V3cvgns8
+*/
 const functions = require('firebase-functions');
 const algoliasearch = require('algoliasearch')
 

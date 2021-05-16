@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { OktaAuthService } from '@okta/okta-angular';
+import {Component, OnInit} from '@angular/core';
+import {OktaAuthService} from '@okta/okta-angular';
 
 @Component({
   selector: 'app-logout',
@@ -8,12 +8,14 @@ import { OktaAuthService } from '@okta/okta-angular';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(public oktaAuth: OktaAuthService) { }
+  constructor(public oktaAuth: OktaAuthService) {
+  }
 
   ngOnInit(): void {
   }
 
   logout() {
-    this.oktaAuth.signOut().then(r => {});
+    this.oktaAuth.signOut().then(r => {
+    });
   }
 }

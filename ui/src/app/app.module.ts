@@ -25,8 +25,6 @@ import {AppComponent} from './app.component';
     AngularFirestoreModule,
     OktaAuthModule,
     HttpClientModule,
-
-    // Teamit Modules
     JournalModule,
     SharedModule
   ],

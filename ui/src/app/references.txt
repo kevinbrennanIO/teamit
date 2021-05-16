@@ -1,0 +1,7 @@
+All of the included components were created
+with help form the following resources.
+
+Official Documentation was used
+===============================
+- https://angular.io/docs
+- https://www.primefaces.org/primeng/showcase/#/
