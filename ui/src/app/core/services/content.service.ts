@@ -17,8 +17,6 @@ export class ContentService {
   }
 
   writePostToDB(postObject: IPost, teamName: string) {
-    // Add a new query or blog record with a generated id.
-    // TODO: dynamic team name required
     this.db.collection(`teams/${teamName}/posts`).doc(postObject.id).set(postObject)
       .then((d) => {
         console.log(`${postObject.type} written with ID:`, postObject.id);

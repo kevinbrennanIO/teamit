@@ -1,0 +1,8 @@
+The Sentiment Analysis API was created while referencing
+the following resources, available online.
+
+Official Documentation was used
+===============================
+- https://golang.org/doc/
+- https://github.com/grassmudhorses/vader-go
+

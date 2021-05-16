@@ -17,10 +17,10 @@ func checkUserExist(ctx context.Context, oktaClient *okta.Client, res http.Respo
 	logger := lg.CreateLogger()
 
 	validateRequest := &User{}
-	validateRequest.FirstName = "dummy"
-	validateRequest.LastName = "dummy"
+	validateRequest.FirstName = ""
+	validateRequest.LastName = ""
 	validateRequest.Email = email
-	validateRequest.Password = "dummy"
+	validateRequest.Password = ""
 
 
 	// validate user request

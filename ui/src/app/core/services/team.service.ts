@@ -22,14 +22,17 @@ export class TeamService {
   ) {
   }
 
+  // broadcast the selected Team
   selectedTeam(team) {
     this.teamDataSource.next(team);
   }
 
+  // broadcast selected Team Member
   selectedTeamMember(user) {
     this.userDataSource.next(user);
   }
 
+  // broadcast selected postID
   selectedPostID(postID) {
     this.postIDDataSource.next(postID);
   }
@@ -40,6 +43,7 @@ export class TeamService {
       ref.where('name', '==', teamName)).valueChanges();
   }
 
+  // returns the teams for a loggedIn Admin
   loggedInUserAdminTeams(userEmail) {
     return this.db.collection<ITeam>('teams', ref =>
       ref.where('administrators', 'array-contains', userEmail)).valueChanges();

@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MenuItem} from 'primeng/api';
 import {TeamService} from '../../../../core/services/team.service';
 
@@ -19,7 +19,6 @@ export class ComposeComponent implements OnInit {
   }
 
   ngOnInit() {
-
     // subscribe to the selected user
     this.teamService.currentlySelectedUser.subscribe(user => {
       this.selectedTeamMember = user;

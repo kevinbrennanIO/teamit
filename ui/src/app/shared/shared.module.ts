@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ErrorComponent} from './components/error/error.component';
-import {ProfileComponent} from './components/profile/profile.component';
 import {ButtonModule} from 'primeng/button';
 import {LoginComponent} from './components/login/login.component';
 import {LogoutComponent} from './components/logout/logout.component';
@@ -18,7 +17,6 @@ import {LoadingComponent} from './components/loading/loading.component';
 @NgModule({
   declarations: [
     ErrorComponent,
-    ProfileComponent,
     LoginComponent,
     LogoutComponent,
     CreateAccountComponent,
@@ -38,7 +36,6 @@ import {LoadingComponent} from './components/loading/loading.component';
   ],
   exports: [
     ErrorComponent,
-    ProfileComponent,
     LoginComponent,
     LogoutComponent,
     CreateAccountComponent,
